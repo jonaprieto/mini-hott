@@ -11,6 +11,6 @@ before_install:
   - pip3 install agda-pkg
 
 script:
-  - agda-pkg install --editable .
+  - agda-pkg install --editable --yes .
   - agda src/MiniHoTT.lagda.md 
 # EOF

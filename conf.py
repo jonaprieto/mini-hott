@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # mini-hott documentation build configuration file, created by
-# sphinx-quickstart and based on: 
+# sphinx-quickstart and based firstly on: 
 # https://github.com/agda/agda/blob/master/doc/user-manual/conf.py.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -14,8 +14,6 @@
 
 import os
 import sys
-import pathlib
-
 
 sys.path.insert(0, os.path.abspath('..'))
 # sys.path.insert(0, os.path.abspath('../src'))
@@ -54,8 +52,8 @@ source_suffix = ['.lagda.rst','.rst']
 master_doc = 'README'
 
 # General information about the project.
-project = u'mini-hott'
-copyright = u"2019-2020, Jonathan Prieto-Cubides"
+project = u'Mini-HoTT'
+# copyright = u"2019-2020, Jonathan Prieto-Cubides"
 author = u'Jonathan Prieto-Cubides'
 
 # The version info for the project you're documenting, acts as replacement for
