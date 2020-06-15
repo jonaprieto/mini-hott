@@ -1,0 +1,8 @@
+sphinx
+sphinx-rtd-theme
+sphinxcontrib-bibtex
+sphinxcontrib-devhelp
+sphinxcontrib-htmlhelp
+sphinxcontrib-jsmath
+sphinxcontrib-qthelp
+sphinxcontrib-serializinghtml

@@ -1,0 +1,95 @@
+/* PRINTER */
+@media print {
+   .page-break {
+     display: block;
+     page-break-before: always;
+  }
+   .only-website {
+     display: none !important;
+  }
+   .print-version {
+     display: inherit !important;
+  }
+   * {
+     -webkit-print-color-adjust: exact !important;
+     color-adjust: exact !important;
+  }
+   html {
+     font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif !important;
+    /*"PT Serif", Georgia, "Times New Roman", serif !important;
+    */
+  }
+   a {
+     color: black !important;
+  }
+   body {
+     font-size: 0.938em !important;
+     color: black !important;
+  }
+   h1, h2, h3, h4, h5, h6 {
+     font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif !important;
+    /*font-family: "PT Serif", Georgia, "Times New Roman", serif !important;
+    */
+     font-weight: 400 !important;
+     color: #21182a !important;
+     letter-spacing: -0.025rem !important;
+  }
+   h1 {
+     font-size: 2em !important;
+     font-weight: bold;
+  }
+   h2 {
+     font-size: 1.188em !important;
+  }
+   h3 {
+     font-size: 1em !important;
+  }
+   h4 {
+     font-size: 1em !important;
+  }
+   h5 {
+     font-size: 1em !important;
+  }
+   h6 {
+     font-size: 1em !important;
+  }
+   .Agda {
+     font-family: PragmataPro Mono;
+  }
+   #citation, .post-title, .masthead-title, .main-heading, #github-links, .view-source, .toc, .hide, .always-hide, .related, #disqus_thread {
+     display: none !important;
+  }
+   pre .foldable :not(.hide) {
+     height: unset !important;
+     overflow: visible !important;
+  }
+   svg {
+     fill: black !important;
+     transform: scale(0.6);
+     -webkit-transform: scale(0.6);
+     -moz-transform: scale(0.6);
+     -ms-transform: scale(0.6);
+     -o-transform: scale(0.6);
+  }
+   .container {
+     max-width: -webkit-fill-available !important;
+  }
+   @page {
+     size: A4;
+     margin-left: 2.7cm;
+     margin-right: 2.7cm;
+     margin-top: 2.5cm;
+     margin-bottom: 2.4cm;
+  }
+   @page :first {
+     margin-left: 2.7cm;
+     margin-right: 2.7cm;
+     margin-top: 3cm;
+     margin-bottom: 2.4cm;
+  }
+   .sidebar-toggle {
+     display: none;
+  }
+}
+
+.markdown-section pre { line-height: 1rem; }
