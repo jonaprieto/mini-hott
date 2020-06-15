@@ -16,9 +16,6 @@
 Suspensions
 ~~~~~~~~~~~
 
-.. image:: _statics/images/suspension-type.png
-  :target: _statics/images/suspension-type.png
-
 ::
 
    module SuspensionType where

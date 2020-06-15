@@ -189,8 +189,8 @@ htmlhelp_basename = 'mini-hottdoc'
 
 # -- Options for LaTeX output --------------------------------------------------
 
-latex_additional_files = [ "assets/utf8-symbols.sty"
-                         , "assets/macros.sty"
+latex_additional_files = [ "_statics/utf8-symbols.sty"
+                         , "_statics/macros.sty"
                          ]
 
 latex_elements = {
