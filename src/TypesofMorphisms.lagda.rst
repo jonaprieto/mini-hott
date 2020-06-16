@@ -93,6 +93,19 @@ Embeddings
 
      _is-embedding = isEmbedding
 
+
+     is-embedding-has-prop-fibers
+       : ∀ {ℓ₁ ℓ₂ : Level}{A : Type ℓ₁}{B : Type ℓ₂}
+       → (f : A → B)
+       → f is-embedding
+       → B is-set
+       → ∏[ x ∶ B ] isProp (fib f x)
+
+     is-embedding-has-prop-fibers f f-is-emb B-is-set =
+       λ b → λ {(a , p₁) (b , p₂) →
+       pair= (((ap f , f-is-emb) ∙←) (p₁ · ! p₂)
+       , B-is-set _ _ _ _)}
+
 Injections
 ~~~~~~~~~~
 

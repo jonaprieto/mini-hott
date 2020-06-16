@@ -77,6 +77,7 @@ Lema: if a type is decidable, then ¬¬A is actually A.
        lemDoubleNeg (inl x) _ = x
        lemDoubleNeg (inr f) n = exfalso (n f)
 
+::
      open HedbergLemmas2 public
 
 -  Hedberg’s theorem. A type with decidable equality is a set.

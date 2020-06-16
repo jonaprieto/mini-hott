@@ -16,19 +16,21 @@ Installation
 
 The only prerequisite is to have installed the latest version of
 `Agda <http://github.com/agda/agda>`__ and a text editor with Agda
-support, e.g., Emacs or Atom. Then, you can install the library as
+support, e.g., Emacs or Atom. Then, you can install the library
 as usual after cloning the sources by running the following command.
 
 .. code:: bash
 
    $ git clone http://github.com/jonaprieto/mini-hott
 
-For newcomers, the easiest way to install a library is by using
+For newcomers, the easiest way to install a library is using
 `agda-pkg <http://github.com/agda/agda-pkg>`__
-Then, run one of the following commands to install it:
+You can run the following commands to install it:
 
 .. code:: bash
 
+   $ pip3 install agda-pkg
+   $ apkg init
    $ apkg install --github jonaprieto/mini-hott
 
 After installing the sources, just include in your code at the top the
@@ -38,16 +40,64 @@ following line:
    
    open import MiniHoTT
 
-Contents
-========
-
-
 .. toctree::
+   :caption: Table of Contents
    :maxdepth: 2
-   :glob:
-
-   src/*
    
+   src/Intro
+   src/MiniHoTT
+   src/BasicTypes
+   src/BasicFunctions
+   src/DecidableEquality
+   src/AlgebraOnPaths
+   src/AlgebraOnDependentPaths
+   src/Transport
+   src/TransportLemmas
+   src/CoproductIdentities
+   src/DependentAlgebra
+   src/FibreType
+   src/Fibrewise
+   src/HomotopyType
+   src/HomotopyLemmas
+   src/EquivalenceType
+   src/QuasiinverseType
+   src/QuasiinverseLemmas
+   src/BiinverseEquivalenceType
+   src/HalfAdjointType
+   src/EquivalenceReasoning
+   src/BasicEquivalences
+   src/PiPreserves
+   src/SigmaPreserves
+   src/SigmaEquivalence
+   src/UnivalenceAxiom
+   src/FunExtAxiom
+   src/UnivalenceLemmas
+   src/UnivalenceIdEquiv
+   src/UnivalenceTransport
+   src/FunExtTransport
+   src/FunExtTransportDependent
+   src/HLevelTypes
+   src/HedbergLemmas
+   src/HLevelLemmas
+   src/TypesofMorphisms
+   src/Rewriting
+   src/SetTruncationType
+   src/ProductIdentities
+   src/SuspensionType
+   src/IntervalType
+   src/TruncationType
+   src/QuotientType
+   src/CircleType
+   src/FundamentalGroupType
+   src/MonoidType
+   src/RelationType
+   src/IntegerType
+   src/GroupType
+   src/NaturalType
+   src/Connectedness
+   src/TheAxiomOfChoice
+
+
 Contributors
 ------------
 
