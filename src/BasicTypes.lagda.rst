@@ -749,22 +749,13 @@ Decidable type
    ⌊ yes _ ⌋ = 𝟙₂
    ⌊ no  _ ⌋ = 𝟘₂
 
-::
-
-   REL
-     : ∀ {ℓ : Level}
-     → Type ℓ → Type ℓ
-     ----------------
-     → Type (lsuc ℓ)
-
-   REL {ℓ} A B = A → B → Type ℓ
 
 ::
 
    Decidable
-     : ∀ {ℓ : Level} {A B : Type ℓ}
-     → REL A B
-     → Type _
+     : ∀ {ℓ₁ ℓ₂ ℓ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
+     → (A → B → Type ℓ)
+     → Type (ℓ₁ ⊔ ℓ₂ ⊔ ℓ)
 
    Decidable _∼_ = ∀ x y → Dec (x ∼ y)
 

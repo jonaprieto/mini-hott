@@ -30,6 +30,39 @@ Transport Lemmas
    transport-const idp b = refl b
 
 ::
+   lift₂
+     : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁} {C : A → A → Type ℓ₂}
+     → {a₁ a₂ : A} → (α₁ : a₁ ≡ a₂)
+     → {b₁ b₂ : A} → (α₂ : b₁ ≡ b₂)
+     → (u : C a₁ b₁)
+     --------------------------------
+     → Path {A = ∑[ x ] ∑[ y ] C x y}
+       (a₁ , b₁ , u)
+       (a₂ , b₂ , tr₂ C α₁ (transport-const α₁ b₁ · α₂) u)
+
+   lift₂ idp idp u = idp
+
+::
+   {-
+   lift₃
+     : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}
+     → {C : A → A → Type ℓ₂}
+     → {D : (x y : A) → C x y → Type ℓ₃}
+     → {a₁ a₂ : A} → (α₁ : a₁ ≡ a₂)
+     → {b₁ b₂ : A} → (α₂ : b₁ ≡ b₂)
+     → {u : C a₁ b₁} → {v : C a₂ b₂}
+     → ?
+     --------------------------------
+     → Path {A = ∑[ x ] ∑[ y ] C x y}
+       (a₁ , b₁ , u)
+       (a₂ , b₂ , v)
+
+   lift₃ idp idp u = ?
+   -}
+
+
+
+::
 
    transport²
      : ∀ {ℓ₁ ℓ₂ : Level}{A : Type ℓ₁}{P : A → Type ℓ₂}

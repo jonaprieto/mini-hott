@@ -60,23 +60,6 @@ Equivalences preserved by Sigma types
 
    open SigmaPreserves
 
-If
-
-.. math:: A\,,~B : U
-
-\ and
-
-.. math:: C: A → U
-
-and
-
-.. math:: e: B \simeq A
-
-, then
-
-{: .equation }
-
-.. math:: \Sigma\,{A}\,C\,\simeq\,\Sigma\,B\,(C ∘ e).
 
 ::
 
