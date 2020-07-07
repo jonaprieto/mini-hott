@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>HomotopyType</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Markup">::
+
+</a>   <a id="8" class="Symbol">{-#</a> <a id="12" class="Keyword">OPTIONS</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Pragma">--exact-split</a> <a id="46" class="Symbol">#-}</a>
+   <a id="53" class="Keyword">open</a> <a id="58" class="Keyword">import</a> <a id="65" href="TransportLemmas.html" class="Module">TransportLemmas</a>
+
+<a id="82" class="Background">Homotopies
+----------
+
+</a><a id="105" class="Markup">::
+
+</a>   <a id="112" class="Keyword">module</a> <a id="119" href="HomotopyType.html" class="Module">HomotopyType</a>
+     <a id="137" class="Symbol">{</a><a id="138" href="HomotopyType.html#138" class="Bound">ℓ₁</a> <a id="141" href="HomotopyType.html#141" class="Bound">ℓ₂</a> <a id="144" class="Symbol">:</a> <a id="146" href="Agda.Primitive.html#423" class="Postulate">Level</a><a id="151" class="Symbol">}</a> <a id="153" class="Symbol">{</a><a id="154" href="HomotopyType.html#154" class="Bound">A</a> <a id="156" class="Symbol">:</a> <a id="158" href="Intro.html#1611" class="Function">Type</a> <a id="163" href="HomotopyType.html#138" class="Bound">ℓ₁</a><a id="165" class="Symbol">}</a> <a id="167" class="Symbol">{</a><a id="168" href="HomotopyType.html#168" class="Bound">P</a> <a id="170" class="Symbol">:</a> <a id="172" href="HomotopyType.html#154" class="Bound">A</a> <a id="174" class="Symbol">→</a> <a id="176" href="Intro.html#1611" class="Function">Type</a> <a id="181" href="HomotopyType.html#141" class="Bound">ℓ₂</a><a id="183" class="Symbol">}</a>
+     <a id="190" class="Keyword">where</a>
+
+<a id="197" class="Background">..
+
+   In a type-theoretical sense, a homotopy between two functions is a
+   family of equalities between their applications.
+
+Let :math:`f , g : \prod_{(x:A)} P(x)` be two sections of a type family
+:math:`P : A \to \mathcal{U}`. A **homotopy** from :math:`f` to
+:math:`g` is a dependent function of type
+
+.. math::  (f \sim g) :\equiv \prod_{(x : A)} (f(x) = g(x)). 
+
+Homotopy types
+~~~~~~~~~~~~~~
+
+</a><a id="597" class="Markup">::
+
+</a>     <a id="homotopy"></a><a id="606" href="HomotopyType.html#606" class="Function">homotopy</a>
+       <a id="622" class="Symbol">:</a> <a id="624" class="Symbol">(</a><a id="625" href="HomotopyType.html#625" class="Bound">f</a> <a id="627" href="HomotopyType.html#627" class="Bound">g</a> <a id="629" class="Symbol">:</a> <a id="631" href="BasicTypes.html#5052" class="Function">Π</a> <a id="633" href="HomotopyType.html#154" class="Bound">A</a> <a id="635" href="HomotopyType.html#168" class="Bound">P</a><a id="636" class="Symbol">)</a>
+       <a id="645" class="Comment">---------------</a>
+       <a id="668" class="Symbol">→</a> <a id="670" href="Intro.html#1611" class="Function">Type</a> <a id="675" class="Symbol">(</a><a id="676" href="HomotopyType.html#138" class="Bound">ℓ₁</a> <a id="679" href="Agda.Primitive.html#636" class="Primitive Operator">⊔</a> <a id="681" href="HomotopyType.html#141" class="Bound">ℓ₂</a><a id="683" class="Symbol">)</a>
+
+     <a id="691" href="HomotopyType.html#606" class="Function">homotopy</a> <a id="700" href="HomotopyType.html#700" class="Bound">f</a> <a id="702" href="HomotopyType.html#702" class="Bound">g</a> <a id="704" class="Symbol">=</a> <a id="706" class="Symbol">∀</a> <a id="708" class="Symbol">(</a><a id="709" href="HomotopyType.html#709" class="Bound">x</a> <a id="711" class="Symbol">:</a> <a id="713" href="HomotopyType.html#154" class="Bound">A</a><a id="714" class="Symbol">)</a> <a id="716" class="Symbol">→</a> <a id="718" href="HomotopyType.html#700" class="Bound">f</a> <a id="720" href="HomotopyType.html#709" class="Bound">x</a> <a id="722" href="BasicTypes.html#9886" class="Datatype Operator">==</a> <a id="725" href="HomotopyType.html#702" class="Bound">g</a> <a id="727" href="HomotopyType.html#709" class="Bound">x</a>
+
+<a id="730" class="Background">Usual notation for homotopy:
+
+</a><a id="760" class="Markup">::
+
+</a>     <a id="_∼_"></a><a id="769" href="HomotopyType.html#769" class="Function Operator">_∼_</a> <a id="773" class="Symbol">:</a> <a id="775" class="Symbol">(</a><a id="776" href="HomotopyType.html#776" class="Bound">f</a> <a id="778" href="HomotopyType.html#778" class="Bound">g</a> <a id="780" class="Symbol">:</a> <a id="782" class="Symbol">((</a><a id="784" href="HomotopyType.html#784" class="Bound">x</a> <a id="786" class="Symbol">:</a> <a id="788" href="HomotopyType.html#154" class="Bound">A</a><a id="789" class="Symbol">)</a> <a id="791" class="Symbol">→</a> <a id="793" href="HomotopyType.html#168" class="Bound">P</a> <a id="795" href="HomotopyType.html#784" class="Bound">x</a><a id="796" class="Symbol">))</a> <a id="799" class="Symbol">→</a> <a id="801" href="Intro.html#1611" class="Function">Type</a> <a id="806" class="Symbol">(</a><a id="807" href="HomotopyType.html#138" class="Bound">ℓ₁</a> <a id="810" href="Agda.Primitive.html#636" class="Primitive Operator">⊔</a> <a id="812" href="HomotopyType.html#141" class="Bound">ℓ₂</a><a id="814" class="Symbol">)</a>
+     <a id="821" href="HomotopyType.html#821" class="Bound">f</a> <a id="823" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="825" href="HomotopyType.html#825" class="Bound">g</a> <a id="827" class="Symbol">=</a> <a id="829" href="HomotopyType.html#606" class="Function">homotopy</a> <a id="838" href="HomotopyType.html#821" class="Bound">f</a> <a id="840" href="HomotopyType.html#825" class="Bound">g</a>
+
+<a id="843" class="Background">Homotopy is an equivalence relation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+   &lt;!-- tabs:start --&gt;
+
+*Reflexivity*
+^^^^^^^^^^^^^
+
+</a><a id="984" class="Markup">::
+
+</a>     <a id="h-refl"></a><a id="993" href="HomotopyType.html#993" class="Function">h-refl</a>
+       <a id="1007" class="Symbol">:</a> <a id="1009" class="Symbol">(</a><a id="1010" href="HomotopyType.html#1010" class="Bound">f</a> <a id="1012" class="Symbol">:</a> <a id="1014" href="BasicTypes.html#5052" class="Function">Π</a> <a id="1016" href="HomotopyType.html#154" class="Bound">A</a> <a id="1018" href="HomotopyType.html#168" class="Bound">P</a><a id="1019" class="Symbol">)</a>
+       <a id="1028" class="Comment">-------------</a>
+       <a id="1049" class="Symbol">→</a> <a id="1051" href="HomotopyType.html#1010" class="Bound">f</a> <a id="1053" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1055" href="HomotopyType.html#1010" class="Bound">f</a>
+
+     <a id="1063" href="HomotopyType.html#993" class="Function">h-refl</a> <a id="1070" href="HomotopyType.html#1070" class="Bound">f</a> <a id="1072" href="HomotopyType.html#1072" class="Bound">x</a> <a id="1074" class="Symbol">=</a> <a id="1076" href="BasicTypes.html#9959" class="InductiveConstructor">idp</a>
+
+<a id="1081" class="Background">*Symmetry*
+^^^^^^^^^^
+
+</a><a id="1104" class="Markup">::
+
+</a>     <a id="h-sym"></a><a id="1113" href="HomotopyType.html#1113" class="Function">h-sym</a>
+       <a id="1126" class="Symbol">:</a> <a id="1128" class="Symbol">(</a><a id="1129" href="HomotopyType.html#1129" class="Bound">f</a> <a id="1131" href="HomotopyType.html#1131" class="Bound">g</a> <a id="1133" class="Symbol">:</a> <a id="1135" href="BasicTypes.html#5052" class="Function">Π</a> <a id="1137" href="HomotopyType.html#154" class="Bound">A</a> <a id="1139" href="HomotopyType.html#168" class="Bound">P</a><a id="1140" class="Symbol">)</a>
+       <a id="1149" class="Symbol">→</a> <a id="1151" href="HomotopyType.html#1129" class="Bound">f</a> <a id="1153" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1155" href="HomotopyType.html#1131" class="Bound">g</a>
+       <a id="1164" class="Comment">-------</a>
+       <a id="1179" class="Symbol">→</a> <a id="1181" href="HomotopyType.html#1131" class="Bound">g</a> <a id="1183" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1185" href="HomotopyType.html#1129" class="Bound">f</a>
+
+     <a id="1193" href="HomotopyType.html#1113" class="Function">h-sym</a> <a id="1199" class="Symbol">_</a> <a id="1201" class="Symbol">_</a> <a id="1203" href="HomotopyType.html#1203" class="Bound">e</a> <a id="1205" href="HomotopyType.html#1205" class="Bound">x</a> <a id="1207" class="Symbol">=</a> <a id="1209" href="BasicFunctions.html#562" class="Function Operator">!</a> <a id="1211" class="Symbol">(</a><a id="1212" href="HomotopyType.html#1203" class="Bound">e</a> <a id="1214" href="HomotopyType.html#1205" class="Bound">x</a><a id="1215" class="Symbol">)</a>
+
+<a id="1218" class="Background">*Transitivity*
+^^^^^^^^^^^^^^
+
+</a><a id="1249" class="Markup">::
+
+</a>     <a id="h-comp"></a><a id="1258" href="HomotopyType.html#1258" class="Function">h-comp</a>
+       <a id="1272" class="Symbol">:</a> <a id="1274" class="Symbol">{</a><a id="1275" href="HomotopyType.html#1275" class="Bound">f</a> <a id="1277" href="HomotopyType.html#1277" class="Bound">g</a> <a id="1279" href="HomotopyType.html#1279" class="Bound">h</a> <a id="1281" class="Symbol">:</a> <a id="1283" href="BasicTypes.html#5052" class="Function">Π</a> <a id="1285" href="HomotopyType.html#154" class="Bound">A</a> <a id="1287" href="HomotopyType.html#168" class="Bound">P</a><a id="1288" class="Symbol">}</a>
+       <a id="1297" class="Symbol">→</a> <a id="1299" href="HomotopyType.html#1275" class="Bound">f</a> <a id="1301" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1303" href="HomotopyType.html#1277" class="Bound">g</a>
+       <a id="1312" class="Symbol">→</a> <a id="1314" href="HomotopyType.html#1277" class="Bound">g</a> <a id="1316" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1318" href="HomotopyType.html#1279" class="Bound">h</a>
+       <a id="1327" class="Comment">-------</a>
+       <a id="1342" class="Symbol">→</a> <a id="1344" href="HomotopyType.html#1275" class="Bound">f</a> <a id="1346" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1348" href="HomotopyType.html#1279" class="Bound">h</a>
+
+     <a id="1356" href="HomotopyType.html#1258" class="Function">h-comp</a> <a id="1363" href="HomotopyType.html#1363" class="Bound">u</a> <a id="1365" href="HomotopyType.html#1365" class="Bound">v</a> <a id="1367" href="HomotopyType.html#1367" class="Bound">x</a> <a id="1369" class="Symbol">=</a> <a id="1371" class="Symbol">(</a><a id="1372" href="HomotopyType.html#1363" class="Bound">u</a> <a id="1374" href="HomotopyType.html#1367" class="Bound">x</a><a id="1375" class="Symbol">)</a> <a id="1377" href="BasicFunctions.html#198" class="Function Operator">·</a> <a id="1379" class="Symbol">(</a><a id="1380" href="HomotopyType.html#1365" class="Bound">v</a> <a id="1382" href="HomotopyType.html#1367" class="Bound">x</a><a id="1383" class="Symbol">)</a>
+
+<a id="1386" class="Background">.. raw:: html
+
+   &lt;!-- tabs:end --&gt;
+
+Syntax:
+
+</a><a id="1432" class="Markup">::
+
+</a>     <a id="_●_"></a><a id="1441" href="HomotopyType.html#1441" class="Function Operator">_●_</a>
+       <a id="1452" class="Symbol">:</a> <a id="1454" class="Symbol">{</a><a id="1455" href="HomotopyType.html#1455" class="Bound">f</a> <a id="1457" href="HomotopyType.html#1457" class="Bound">g</a> <a id="1459" href="HomotopyType.html#1459" class="Bound">h</a> <a id="1461" class="Symbol">:</a> <a id="1463" href="BasicTypes.html#5052" class="Function">Π</a> <a id="1465" href="HomotopyType.html#154" class="Bound">A</a> <a id="1467" href="HomotopyType.html#168" class="Bound">P</a><a id="1468" class="Symbol">}</a>
+       <a id="1477" class="Symbol">→</a> <a id="1479" href="HomotopyType.html#1455" class="Bound">f</a> <a id="1481" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1483" href="HomotopyType.html#1457" class="Bound">g</a>
+       <a id="1492" class="Symbol">→</a> <a id="1494" href="HomotopyType.html#1457" class="Bound">g</a> <a id="1496" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1498" href="HomotopyType.html#1459" class="Bound">h</a>
+       <a id="1507" class="Comment">-------</a>
+       <a id="1522" class="Symbol">→</a> <a id="1524" href="HomotopyType.html#1455" class="Bound">f</a> <a id="1526" href="HomotopyType.html#769" class="Function Operator">∼</a> <a id="1528" href="HomotopyType.html#1459" class="Bound">h</a>
+
+     <a id="1536" href="HomotopyType.html#1536" class="Bound">α</a> <a id="1538" href="HomotopyType.html#1441" class="Function Operator">●</a> <a id="1540" href="HomotopyType.html#1540" class="Bound">β</a> <a id="1542" class="Symbol">=</a> <a id="1544" href="HomotopyType.html#1258" class="Function">h-comp</a> <a id="1551" href="HomotopyType.html#1536" class="Bound">α</a> <a id="1553" href="HomotopyType.html#1540" class="Bound">β</a>
+</pre></body></html>

@@ -1,6 +1,7 @@
 ::
 
-   {-# OPTIONS --without-K --exact-split #-}
+   {-# OPTIONS --without-K --exact-split --safe #-}
+
    open import Intro public
 
 Types
@@ -11,13 +12,6 @@ Empty type
 
 A type without points is the *empty* type (also called falsehood).
 
-.. raw:: html
-
-   <!-- tabs:start -->
-
-\*\* Declaration \*\*
-^^^^^^^^^^^^^^^^^^^^^
-
 ::
 
    data
@@ -25,21 +19,10 @@ A type without points is the *empty* type (also called falsehood).
        : Type ℓ
      where
 
-\*\* Additionally syntax \*\*
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 ::
 
    ⊥     = 𝟘
    Empty = 𝟘
-
-.. raw:: html
-
-   <!-- tabs:end -->
-
-.. raw:: html
-
-   <!-- tabs:start -->
 
 \*\* Elimination principle \*\*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -55,8 +38,6 @@ A type without points is the *empty* type (also called falsehood).
 
    exfalso ()
 
-.. _additionally-syntax-1:
-
 \*\* Additionally syntax \*\*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -66,9 +47,6 @@ A type without points is the *empty* type (also called falsehood).
    ⊥-elim     = exfalso
    𝟘-elim     = exfalso
 
-.. raw:: html
-
-   <!-- tabs:end -->
 
 We abbreviate functions with codomain the empty type by using the prefix
 symbol of the negation.
@@ -77,6 +55,7 @@ symbol of the negation.
 
    ¬ : ∀ {ℓ : Level} → Type ℓ → Type ℓ
    ¬ {ℓ} A = (A → ⊥ ℓ)
+
 
 Unit type
 ---------
@@ -237,6 +216,10 @@ Natural numbers
      succ _ < zero   = ⊥ _
      succ a < succ b = a < b
 
+     infixl -1 _<_
+
+     bound : ∀ {k n : ℕ} → k < n → ℕ
+     bound {n = n} _ = n
 ::
 
      _>_ : ℕ → ℕ → Type ℓ
@@ -422,11 +405,6 @@ tagging which elements comes from the type :math:`A` and :math:`B`. The
 tags are the constructor for this type, named here as ``inr`` or
 ``inl``, that stands for right and left injection, respectively.
 
-.. raw:: html
-
-   <!-- tabs:start -->
-
-.. _declaration-7:
 
 \*\* Declaration \*\*
 ^^^^^^^^^^^^^^^^^^^^^
@@ -442,15 +420,6 @@ tags are the constructor for this type, named here as ``inr`` or
 
    infixr 31 _+_
 
-.. raw:: html
-
-   <!-- tabs:end -->
-
-.. raw:: html
-
-   <!-- tabs:start -->
-
-.. _elimination-principle-2:
 
 \*\* Elimination principle \*\*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -467,20 +436,13 @@ tags are the constructor for this type, named here as ``inr`` or
    +-elim A→C _  (inl x) = A→C x
    +-elim _  B→C (inr x) = B→C x
 
-.. _additionally-syntax-7:
-
-\*\* Additionally syntax \*\*
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
    cases = +-elim
-
    syntax cases f g = ⟨ f + g ⟩
 
-.. raw:: html
 
-   <!-- tabs:end -->
 
 Finite sets
 -----------
@@ -507,9 +469,9 @@ finite types are sets, and any finite type is equivalent to some
 
 ::
 
-   Fin : ∀ {ℓ : Level} → ℕ → Type ℓ
-   Fin {ℓ} n = Σ ℕ (λ m → m < n)
-     where open ℕ-ordering ℓ
+   -- Fin : ∀ {ℓ : Level} → ℕ → Type ℓ
+   -- Fin {ℓ} n = Σ ℕ (λ m → m < n)
+     -- where open ℕ-ordering ℓ
 
 .. _additionally-syntax-8:
 
@@ -518,15 +480,15 @@ finite types are sets, and any finite type is equivalent to some
 
 ::
 
-   syntax Fin n = ⟦ n ⟧
+  
 
 \*\* The function bound-of \*\*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
 
-   bound-of : ∀ {ℓ : Level} {n : ℕ} → Fin {ℓ} n → ℕ
-   bound-of {n = n} _ = n
+   -- bound-of : ∀ {ℓ : Level} {n : ℕ} → Fin {ℓ} n → ℕ
+   -- bound-of {n = n} _ = n
 
 .. raw:: html
 

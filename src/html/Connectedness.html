@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>Connectedness</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Markup">::
+
+</a>   <a id="8" class="Symbol">{-#</a> <a id="12" class="Keyword">OPTIONS</a> <a id="20" class="Pragma">--without-K</a> <a id="32" class="Pragma">--exact-split</a> <a id="46" class="Symbol">#-}</a>
+   <a id="53" class="Keyword">open</a> <a id="58" class="Keyword">import</a> <a id="65" href="TransportLemmas.html" class="Module">TransportLemmas</a>
+   <a id="84" class="Keyword">open</a> <a id="89" class="Keyword">import</a> <a id="96" href="EquivalenceType.html" class="Module">EquivalenceType</a>
+
+   <a id="116" class="Keyword">open</a> <a id="121" class="Keyword">import</a> <a id="128" href="HomotopyType.html" class="Module">HomotopyType</a>
+   <a id="144" class="Keyword">open</a> <a id="149" class="Keyword">import</a> <a id="156" href="FunExtAxiom.html" class="Module">FunExtAxiom</a>
+   <a id="171" class="Keyword">open</a> <a id="176" class="Keyword">import</a> <a id="183" href="HLevelTypes.html" class="Module">HLevelTypes</a>
+
+   <a id="199" class="Keyword">open</a> <a id="204" class="Keyword">import</a> <a id="211" href="SetTruncationType.html" class="Module">SetTruncationType</a>
+
+<a id="230" class="Background">Connectedness
+-------------
+
+0-connected type
+~~~~~~~~~~~~~~~~
+
+</a><a id="294" class="Markup">::
+
+</a>   <a id="301" class="Comment">{-
+   _is-0-connected
+     : ∀ {ℓ : Level}
+     → (A : Type ℓ)
+     → Type ℓ
+
+   A is-0-connected = isContr (∥ A ∥₀)
+   -}</a>
+</pre></body></html>

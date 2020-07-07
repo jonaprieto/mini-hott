@@ -22,7 +22,7 @@ Equivalences preserved by Sigma types
 ::
 
    module
-     SigmaPreserves {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}{C : A → Type ℓ₂}{D : A → Type ℓ₃}
+     _ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}{C : A → Type ℓ₂}{D : A → Type ℓ₃}
        (e : (a : A) → C a ≃ D a)
      where
 
@@ -58,12 +58,9 @@ Equivalences preserved by Sigma types
 
      sigma-preserves = qinv-≃ ΣAC-to-ΣAD (ΣAD-to-ΣAC , H₁ , H₂)
 
-   open SigmaPreserves
-
-
 ::
 
-   module SigmaPreserves-≃ {ℓ₁ ℓ₂ ℓ₃}
+   module _ {ℓ₁ ℓ₂ ℓ₃}
      {A : Type ℓ₁} {B : Type ℓ₂} (e : B ≃ A) {C : A → Type ℓ₃} where
 
      private
@@ -154,5 +151,4 @@ Equivalences preserved by Sigma types
    sigma-maps-≃ {A = A}{A'}{B}{B'} α β =
      ≃-trans (sigma-preserves β) (≃-sym (sigma-preserves-≃ α))
      where
-       open SigmaPreserves
-       open SigmaPreserves-≃
+

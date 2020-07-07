@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>MiniHoTT</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">Everything in Mini HoTT
+-----------------------
+
+</a><a id="50" class="Markup">::
+
+
+</a>   <a id="58" class="Symbol">{-#</a> <a id="62" class="Keyword">OPTIONS</a> <a id="70" class="Pragma">--without-K</a> <a id="82" class="Pragma">--exact-split</a> <a id="96" class="Pragma">--allow-unsolved-metas</a>  <a id="120" class="Symbol">#-}</a>
+
+   <a id="128" class="Keyword">module</a> <a id="135" href="MiniHoTT.html" class="Module">MiniHoTT</a> <a id="144" class="Keyword">where</a>
+
+     <a id="156" class="Keyword">open</a> <a id="161" class="Keyword">import</a> <a id="168" href="Intro.html" class="Module">Intro</a> <a id="174" class="Keyword">public</a>
+
+     <a id="187" class="Keyword">open</a> <a id="192" class="Keyword">import</a> <a id="199" href="BasicTypes.html" class="Module">BasicTypes</a> <a id="210" class="Keyword">public</a>
+     <a id="222" class="Keyword">open</a> <a id="227" class="Keyword">import</a> <a id="234" href="HLevelTypes.html" class="Module">HLevelTypes</a> <a id="246" class="Keyword">public</a>
+
+     <a id="259" class="Keyword">open</a> <a id="264" class="Keyword">import</a> <a id="271" href="BasicFunctions.html" class="Module">BasicFunctions</a> <a id="286" class="Keyword">public</a>
+
+     <a id="299" class="Keyword">open</a> <a id="304" class="Keyword">import</a> <a id="311" href="AlgebraOnPaths.html" class="Module">AlgebraOnPaths</a> <a id="326" class="Keyword">public</a>
+
+     <a id="339" class="Keyword">open</a> <a id="344" class="Keyword">import</a> <a id="351" href="Transport.html" class="Module">Transport</a> <a id="361" class="Keyword">public</a>
+     <a id="373" class="Keyword">open</a> <a id="378" class="Keyword">import</a> <a id="385" href="TransportLemmas.html" class="Module">TransportLemmas</a> <a id="401" class="Keyword">public</a>
+
+     <a id="414" class="Keyword">open</a> <a id="419" class="Keyword">import</a> <a id="426" href="AlgebraOnDependentPaths.html" class="Module">AlgebraOnDependentPaths</a> <a id="450" class="Keyword">public</a>
+
+     <a id="463" class="Keyword">open</a> <a id="468" class="Keyword">import</a> <a id="475" href="ProductIdentities.html" class="Module">ProductIdentities</a> <a id="493" class="Keyword">public</a>
+     <a id="505" class="Keyword">open</a> <a id="510" class="Keyword">import</a> <a id="517" href="CoproductIdentities.html" class="Module">CoproductIdentities</a> <a id="537" class="Keyword">public</a>
+
+     <a id="550" class="Keyword">open</a> <a id="555" class="Keyword">import</a> <a id="562" href="FibreType.html" class="Module">FibreType</a> <a id="572" class="Keyword">public</a>
+
+     <a id="585" class="Keyword">open</a> <a id="590" class="Keyword">import</a> <a id="597" href="EquivalenceType.html" class="Module">EquivalenceType</a> <a id="613" class="Keyword">public</a>
+
+     <a id="626" class="Keyword">open</a> <a id="631" class="Keyword">import</a> <a id="638" href="DependentAlgebra.html" class="Module">DependentAlgebra</a> <a id="655" class="Keyword">public</a>
+
+     <a id="668" class="Keyword">open</a> <a id="673" class="Keyword">import</a> <a id="680" href="HomotopyType.html" class="Module">HomotopyType</a> <a id="693" class="Keyword">public</a>
+     <a id="705" class="Keyword">open</a> <a id="710" class="Keyword">import</a> <a id="717" href="HomotopyLemmas.html" class="Module">HomotopyLemmas</a> <a id="732" class="Keyword">public</a>
+
+     <a id="745" class="Keyword">open</a> <a id="750" class="Keyword">import</a> <a id="757" href="FunExtAxiom.html" class="Module">FunExtAxiom</a> <a id="769" class="Keyword">public</a>
+     <a id="781" class="Keyword">open</a> <a id="786" class="Keyword">import</a> <a id="793" href="FunExtTransport.html" class="Module">FunExtTransport</a> <a id="809" class="Keyword">public</a>
+     <a id="821" class="Keyword">open</a> <a id="826" class="Keyword">import</a> <a id="833" href="FunExtTransportDependent.html" class="Module">FunExtTransportDependent</a> <a id="858" class="Keyword">public</a>
+
+     <a id="871" class="Keyword">open</a> <a id="876" class="Keyword">import</a> <a id="883" href="DecidableEquality.html" class="Module">DecidableEquality</a> <a id="901" class="Keyword">public</a>
+
+     <a id="914" class="Keyword">open</a> <a id="919" class="Keyword">import</a> <a id="926" href="HalfAdjointType.html" class="Module">HalfAdjointType</a> <a id="942" class="Keyword">public</a>
+
+     <a id="955" class="Keyword">open</a> <a id="960" class="Keyword">import</a> <a id="967" href="QuasiinverseType.html" class="Module">QuasiinverseType</a> <a id="984" class="Keyword">public</a>
+     <a id="996" class="Keyword">open</a> <a id="1001" class="Keyword">import</a> <a id="1008" href="QuasiinverseLemmas.html" class="Module">QuasiinverseLemmas</a> <a id="1027" class="Keyword">public</a>
+
+
+     <a id="1041" class="Keyword">open</a> <a id="1046" class="Keyword">import</a> <a id="1053" href="SigmaEquivalence.html" class="Module">SigmaEquivalence</a> <a id="1070" class="Keyword">public</a>
+     <a id="1082" class="Keyword">open</a> <a id="1087" class="Keyword">import</a> <a id="1094" href="SigmaPreserves.html" class="Module">SigmaPreserves</a> <a id="1109" class="Keyword">public</a>
+
+     <a id="1122" class="Keyword">open</a> <a id="1127" class="Keyword">import</a> <a id="1134" href="PiPreserves.html" class="Module">PiPreserves</a> <a id="1146" class="Keyword">public</a>
+
+     <a id="1159" class="Keyword">open</a> <a id="1164" class="Keyword">import</a> <a id="1171" href="UnivalenceAxiom.html" class="Module">UnivalenceAxiom</a> <a id="1187" class="Keyword">public</a>
+
+     <a id="1200" class="Keyword">open</a> <a id="1205" class="Keyword">import</a> <a id="1212" href="HLevelLemmas.html" class="Module">HLevelLemmas</a> <a id="1225" class="Keyword">public</a>
+
+     <a id="1238" class="Keyword">open</a> <a id="1243" class="Keyword">import</a> <a id="1250" href="HedbergLemmas.html" class="Module">HedbergLemmas</a> <a id="1264" class="Keyword">public</a>
+
+     <a id="1277" class="Keyword">open</a> <a id="1282" class="Keyword">import</a> <a id="1289" href="UnivalenceIdEquiv.html" class="Module">UnivalenceIdEquiv</a> <a id="1307" class="Keyword">public</a>
+     <a id="1319" class="Keyword">open</a> <a id="1324" class="Keyword">import</a> <a id="1331" href="UnivalenceLemmas.html" class="Module">UnivalenceLemmas</a> <a id="1348" class="Keyword">public</a>
+
+     <a id="1361" class="Keyword">open</a> <a id="1366" class="Keyword">import</a> <a id="1373" href="EquivalenceReasoning.html" class="Module">EquivalenceReasoning</a> <a id="1394" class="Keyword">public</a>
+     <a id="1406" class="Keyword">open</a> <a id="1411" class="Keyword">import</a> <a id="1418" href="UnivalenceTransport.html" class="Module">UnivalenceTransport</a> <a id="1438" class="Keyword">public</a>
+
+     <a id="1451" class="Keyword">open</a> <a id="1456" class="Keyword">import</a> <a id="1463" href="Rewriting.html" class="Module">Rewriting</a> <a id="1473" class="Keyword">public</a>
+     <a id="1485" class="Keyword">open</a> <a id="1490" class="Keyword">import</a> <a id="1497" href="CircleType.html" class="Module">CircleType</a> <a id="1508" class="Keyword">public</a>
+     <a id="1520" class="Keyword">open</a> <a id="1525" class="Keyword">import</a> <a id="1532" href="IntervalType.html" class="Module">IntervalType</a> <a id="1545" class="Keyword">public</a>
+     <a id="1557" class="Keyword">open</a> <a id="1562" class="Keyword">import</a> <a id="1569" href="SuspensionType.html" class="Module">SuspensionType</a> <a id="1584" class="Keyword">public</a>
+     <a id="1596" class="Keyword">open</a> <a id="1601" class="Keyword">import</a> <a id="1608" href="TruncationType.html" class="Module">TruncationType</a> <a id="1623" class="Keyword">public</a>
+     <a id="1635" class="Keyword">open</a> <a id="1640" class="Keyword">import</a> <a id="1647" href="SetTruncationType.html" class="Module">SetTruncationType</a> <a id="1665" class="Keyword">public</a>
+
+     <a id="1678" class="Keyword">open</a> <a id="1683" class="Keyword">import</a> <a id="1690" href="TypesofMorphisms.html" class="Module">TypesofMorphisms</a> <a id="1707" class="Keyword">public</a>
+
+     <a id="1720" class="Keyword">open</a> <a id="1725" class="Keyword">import</a> <a id="1732" href="NaturalType.html" class="Module">NaturalType</a> <a id="1744" class="Keyword">public</a>
+     <a id="1756" class="Keyword">open</a> <a id="1761" class="Keyword">import</a> <a id="1768" href="IntegerType.html" class="Module">IntegerType</a> <a id="1780" class="Keyword">public</a>
+
+
+     <a id="1794" class="Keyword">open</a> <a id="1799" class="Keyword">import</a> <a id="1806" href="QuotientType.html" class="Module">QuotientType</a> <a id="1819" class="Keyword">public</a>
+     <a id="1831" class="Keyword">open</a> <a id="1836" class="Keyword">import</a> <a id="1843" href="RelationType.html" class="Module">RelationType</a> <a id="1856" class="Keyword">public</a>
+
+     <a id="1869" class="Keyword">open</a> <a id="1874" class="Keyword">import</a> <a id="1881" href="MonoidType.html" class="Module">MonoidType</a> <a id="1892" class="Keyword">public</a>
+     <a id="1904" class="Keyword">open</a> <a id="1909" class="Keyword">import</a> <a id="1916" href="GroupType.html" class="Module">GroupType</a> <a id="1926" class="Keyword">public</a>
+
+     <a id="1939" class="Keyword">open</a> <a id="1944" class="Keyword">import</a> <a id="1951" href="BasicEquivalences.html" class="Module">BasicEquivalences</a> <a id="1969" class="Keyword">public</a>
+
+     <a id="1982" class="Keyword">open</a> <a id="1987" class="Keyword">import</a> <a id="1994" href="Connectedness.html" class="Module">Connectedness</a> <a id="2008" class="Keyword">public</a>
+
+     <a id="2021" class="Keyword">open</a> <a id="2026" class="Keyword">import</a> <a id="2033" href="FundamentalGroupType.html" class="Module">FundamentalGroupType</a> <a id="2054" class="Keyword">public</a>
+
+</pre></body></html>

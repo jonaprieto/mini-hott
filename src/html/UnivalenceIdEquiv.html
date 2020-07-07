@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>UnivalenceIdEquiv</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Background">Univalence Lemma for Identity equivalence
+-----------------------------------------
+
+</a><a id="86" class="Markup">::
+
+</a>   <a id="93" class="Symbol">{-#</a> <a id="97" class="Keyword">OPTIONS</a> <a id="105" class="Pragma">--without-K</a> <a id="117" class="Pragma">--exact-split</a> <a id="131" class="Symbol">#-}</a>
+   <a id="138" class="Keyword">module</a> <a id="145" href="UnivalenceIdEquiv.html" class="Module">_</a> <a id="147" class="Keyword">where</a>
+   <a id="156" class="Keyword">open</a> <a id="161" class="Keyword">import</a> <a id="168" href="TransportLemmas.html" class="Module">TransportLemmas</a>
+   <a id="187" class="Keyword">open</a> <a id="192" class="Keyword">import</a> <a id="199" href="EquivalenceType.html" class="Module">EquivalenceType</a>
+
+   <a id="219" class="Keyword">open</a> <a id="224" class="Keyword">import</a> <a id="231" href="HomotopyType.html" class="Module">HomotopyType</a>
+   <a id="247" class="Keyword">open</a> <a id="252" class="Keyword">import</a> <a id="259" href="FunExtAxiom.html" class="Module">FunExtAxiom</a>
+
+   <a id="275" class="Keyword">open</a> <a id="280" class="Keyword">import</a> <a id="287" href="EquivalenceType.html" class="Module">EquivalenceType</a>
+   <a id="306" class="Keyword">open</a> <a id="311" class="Keyword">import</a> <a id="318" href="QuasiinverseType.html" class="Module">QuasiinverseType</a>
+   <a id="338" class="Keyword">open</a> <a id="343" class="Keyword">import</a> <a id="350" href="QuasiinverseLemmas.html" class="Module">QuasiinverseLemmas</a>
+   <a id="372" class="Keyword">open</a> <a id="377" class="Keyword">import</a> <a id="384" href="UnivalenceAxiom.html" class="Module">UnivalenceAxiom</a>
+   <a id="403" class="Keyword">open</a> <a id="408" class="Keyword">import</a> <a id="415" href="UnivalenceTransport.html" class="Module">UnivalenceTransport</a>
+   <a id="438" class="Keyword">open</a> <a id="443" class="Keyword">import</a> <a id="450" href="HLevelLemmas.html" class="Module">HLevelLemmas</a>
+
+   <a id="467" class="Keyword">module</a> <a id="UnivalenceIdEquiv"></a><a id="474" href="UnivalenceIdEquiv.html#474" class="Module">UnivalenceIdEquiv</a> <a id="492" class="Keyword">where</a>
+
+<a id="499" class="Background">The identity equivalence creates the trivial path.
+
+</a><a id="551" class="Markup">::
+
+</a>     <a id="UnivalenceIdEquiv.ua-id"></a><a id="560" href="UnivalenceIdEquiv.html#560" class="Function">ua-id</a>
+       <a id="573" class="Symbol">:</a> <a id="575" class="Symbol">∀</a> <a id="577" class="Symbol">{</a><a id="578" href="UnivalenceIdEquiv.html#578" class="Bound">ℓ</a> <a id="580" class="Symbol">:</a> <a id="582" href="Agda.Primitive.html#423" class="Postulate">Level</a><a id="587" class="Symbol">}</a> <a id="589" class="Symbol">{</a><a id="590" href="UnivalenceIdEquiv.html#590" class="Bound">A</a> <a id="592" class="Symbol">:</a> <a id="594" href="Intro.html#1611" class="Function">Type</a> <a id="599" href="UnivalenceIdEquiv.html#578" class="Bound">ℓ</a><a id="600" class="Symbol">}</a>
+       <a id="609" class="Comment">--------------------</a>
+       <a id="637" class="Symbol">→</a> <a id="639" href="UnivalenceAxiom.html#2434" class="Function">ua</a> <a id="642" href="QuasiinverseLemmas.html#1141" class="Function">idEqv</a> <a id="648" href="BasicTypes.html#10185" class="Function Operator">≡</a> <a id="650" href="BasicTypes.html#10472" class="Function">refl</a> <a id="655" href="UnivalenceIdEquiv.html#590" class="Bound">A</a>
+
+     <a id="663" href="UnivalenceIdEquiv.html#560" class="Function">ua-id</a> <a id="669" class="Symbol">{</a><a id="670" class="Argument">A</a> <a id="672" class="Symbol">=</a> <a id="674" href="UnivalenceIdEquiv.html#674" class="Bound">A</a><a id="675" class="Symbol">}</a> <a id="677" class="Symbol">=</a>
+       <a id="686" href="BasicFunctions.html#10619" class="Function Operator">begin</a>
+         <a id="701" href="UnivalenceAxiom.html#2434" class="Function">ua</a> <a id="704" href="QuasiinverseLemmas.html#1141" class="Function">idEqv</a>
+           <a id="721" href="BasicFunctions.html#10444" class="Function Operator">≡⟨</a> <a id="724" href="AlgebraOnPaths.html#175" class="Function">ap</a> <a id="727" href="UnivalenceAxiom.html#2434" class="Function">ua</a> <a id="730" class="Symbol">(</a><a id="731" href="HLevelLemmas.html#8993" class="Function">sameEqv</a> <a id="739" class="Symbol">(</a><a id="740" href="BasicTypes.html#10472" class="Function">refl</a> <a id="745" href="BasicFunctions.html#683" class="Function">id</a><a id="747" class="Symbol">))</a> <a id="750" href="BasicFunctions.html#10444" class="Function Operator">⟩</a>
+         <a id="761" href="UnivalenceAxiom.html#2434" class="Function">ua</a> <a id="764" class="Symbol">(</a><a id="765" href="UnivalenceAxiom.html#518" class="Function">idtoeqv</a> <a id="773" class="Symbol">(</a><a id="774" href="BasicTypes.html#10472" class="Function">refl</a> <a id="779" href="UnivalenceIdEquiv.html#674" class="Bound">A</a><a id="780" class="Symbol">))</a>
+           <a id="794" href="BasicFunctions.html#10444" class="Function Operator">≡⟨</a> <a id="797" href="UnivalenceAxiom.html#2742" class="Function">ua-η</a> <a id="802" class="Symbol">(</a><a id="803" href="BasicTypes.html#10472" class="Function">refl</a> <a id="808" href="UnivalenceIdEquiv.html#674" class="Bound">A</a><a id="809" class="Symbol">)</a> <a id="811" href="BasicFunctions.html#10444" class="Function Operator">⟩</a>
+         <a id="822" href="BasicTypes.html#10472" class="Function">refl</a> <a id="827" href="UnivalenceIdEquiv.html#674" class="Bound">A</a>
+       <a id="836" href="BasicFunctions.html#10509" class="Function Operator">∎</a>
+</pre></body></html>

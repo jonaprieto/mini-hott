@@ -142,8 +142,8 @@ Synonym for composition (diagrammatic version)
 
 ::
 
-   _:>_
-     : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁} {B : A → Type ℓ₂} {C : (a : A) → (B a → Type ℓ₃)}
+   _:>_ _︔_
+      : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁} {B : A → Type ℓ₂} {C : (a : A) → (B a → Type ℓ₃)}
      → (f : Π A B)
      → (g : {a : A} → Π (B a) (C a))
      -------------------------------

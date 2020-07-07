@@ -4,7 +4,7 @@ Everything in Mini HoTT
 ::
 
 
-   {-# OPTIONS --without-K --exact-split  #-}
+   {-# OPTIONS --without-K --exact-split   #-}
 
    module MiniHoTT where
 
@@ -34,7 +34,7 @@ Everything in Mini HoTT
      open import HomotopyType public
      open import HomotopyLemmas public
 
-     open import FunExtAxiom public
+     open import FunExtAxiom
      open import FunExtTransport public
      open import FunExtTransportDependent public
 
@@ -51,7 +51,7 @@ Everything in Mini HoTT
 
      open import PiPreserves public
 
-     open import UnivalenceAxiom public
+     open import UnivalenceAxiom
 
      open import HLevelLemmas public
 
@@ -64,6 +64,7 @@ Everything in Mini HoTT
      open import UnivalenceTransport public
 
      open import Rewriting public
+
      open import CircleType public
      open import IntervalType public
      open import SuspensionType public
@@ -72,7 +73,8 @@ Everything in Mini HoTT
 
      open import TypesofMorphisms public
 
-     open import NaturalType public
+     open import NaturalType
+     {-
      open import IntegerType public
 
 
@@ -81,6 +83,7 @@ Everything in Mini HoTT
 
      open import MonoidType public
      open import GroupType public
+     -}
 
      open import BasicEquivalences public
 

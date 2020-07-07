@@ -16,7 +16,6 @@ import os
 import sys
 
 sys.path.insert(0, os.path.abspath('..'))
-# sys.path.insert(0, os.path.abspath('../src'))
 
 # print(sys.path)
 
@@ -48,7 +47,7 @@ mathjax_config = {
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = ['.lagda.rst','.rst']
+source_suffix = ['.lagda', '.lagda.rst','.rst']
 html_sourcelink_suffix = ''
 
 # The encoding of source files.

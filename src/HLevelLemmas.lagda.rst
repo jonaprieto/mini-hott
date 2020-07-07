@@ -31,13 +31,6 @@ need them.
 
    module HLevelLemmas where
 
-For any type,
-
-.. math:: A : \Type
-
-,
-
-.. math::  \isContr{A} ⇒ \isProp{A} ⇒ \isSet{A} ⇒ \mathsf{isGroupoid}{A}.
 
 Contractible types are Propositions:
 
@@ -132,7 +125,7 @@ Propositions are Sets:
 
      is-prop-A+B ispropA ispropB ¬A×B (inl x) (inl x₁) = ap inl (ispropA x x₁)
      is-prop-A+B ispropA ispropB ¬A×B (inl x) (inr x₁) = ⊥-elim (¬A×B (x , x₁))
-     is-prop-A+B ispropA ispropB ¬A×B (inr x) (inl x₁) =  ⊥-elim (¬A×B (x₁ , x))
+     is-prop-A+B ispropA ispropB ¬A×B (inr x) (inl x₁) = ⊥-elim (¬A×B (x₁ , x))
      is-prop-A+B ispropA ispropB ¬A×B (inr x) (inr x₁) = ap inr (ispropB x x₁)
 
 Propositions are propositions. This time, please notice the strong use
@@ -818,28 +811,27 @@ the type family that maps 𝟘₂ to A and consequently, 𝟙₂ maps to B.
 
 ::
 
+   abstract
+     +-of-sets-is-set
+       : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
+       → isSet A → isSet B
+       -------------------
+       → isSet (A + B)
 
-   +-of-sets-is-set
-     : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
-     → isSet A → isSet B
-     -------------------
-     → isSet (A + B)
+     +-of-sets-is-set {ℓ₁}{ℓ₂}{A}{B} iA iB
+       = ≃-with-a-set-is-set (≃-sym (+-≃-∑ {ℓ₃ = ℓ₂}{A = A}{B}))
+         (∑-set 𝟚-is-set λ { 𝟘₂ → fact₁ ; 𝟙₂ → fact₂})
+       where
+         open import BasicEquivalences
+         fact₁ : isSet (P𝟚-to-A+B {ℓ₃ = ℓ₂} A B 𝟘₂)
+         fact₁ = ≃-with-a-set-is-set (lifting-equivalence A) iA
 
-   +-of-sets-is-set {ℓ₁}{ℓ₂}{A}{B} iA iB
-     = ≃-with-a-set-is-set (≃-sym (+-≃-∑ {ℓ₃ = ℓ₂}{A = A}{B}))
-       (∑-set 𝟚-is-set λ { 𝟘₂ → fact₁ ; 𝟙₂ → fact₂})
-     where
-     open import BasicEquivalences
-     abstract
-       fact₁ : isSet (P𝟚-to-A+B {ℓ₃ = ℓ₂} A B 𝟘₂)
-       fact₁ = ≃-with-a-set-is-set (lifting-equivalence A) iA
-
-       fact₂ : isSet (P𝟚-to-A+B {ℓ₃ = ℓ₂} A B 𝟙₂)
-       fact₂ = ≃-with-a-set-is-set (lifting-equivalence B) iB
+         fact₂ : isSet (P𝟚-to-A+B {ℓ₃ = ℓ₂} A B 𝟙₂)
+         fact₂ = ≃-with-a-set-is-set (lifting-equivalence B) iB
 
 ::
 
-   +-set = +-of-sets-is-set
+     +-set = +-of-sets-is-set
 
 ::
 

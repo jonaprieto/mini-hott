@@ -50,7 +50,7 @@ following option.
 
 ::
 
-   {-# OPTIONS --exact-split #-}
+   {-# OPTIONS --exact-split --safe #-}
 
 ::
 

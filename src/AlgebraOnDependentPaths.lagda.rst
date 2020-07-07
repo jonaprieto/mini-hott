@@ -7,6 +7,7 @@
    open import Transport public
    open import TransportLemmas public
 
+
 Algebra of Pathovers
 --------------------
 
