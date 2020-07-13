@@ -270,15 +270,20 @@ Natural number operations
 
 ::
 
-   plus : ℕ → ℕ → ℕ
+   plus _+ₙ_ : ℕ → ℕ → ℕ
    plus zero     y = y
    plus (succ x) y = succ (plus x y)
 
 ::
 
    infixl 60 _+ₙ_
-   _+ₙ_ : ℕ → ℕ → ℕ
    _+ₙ_ = plus
+
+   plus' _+ℕ_ : ℕ → ℕ → ℕ
+   plus' x zero = x
+   plus' x (succ y) = succ (plus' x y)
+   _+ℕ_ = plus'
+
 
 ::
 

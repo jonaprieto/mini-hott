@@ -117,7 +117,7 @@ Propositions are Sets:
 
 ::
 
-     is-prop-A+B
+     is-prop-A+B +-prop
        : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
        → isProp A → isProp B → ¬ (A × B)
        ---------------------------------
@@ -127,6 +127,8 @@ Propositions are Sets:
      is-prop-A+B ispropA ispropB ¬A×B (inl x) (inr x₁) = ⊥-elim (¬A×B (x , x₁))
      is-prop-A+B ispropA ispropB ¬A×B (inr x) (inl x₁) = ⊥-elim (¬A×B (x₁ , x))
      is-prop-A+B ispropA ispropB ¬A×B (inr x) (inr x₁) = ap inr (ispropB x x₁)
+
+     +-prop = is-prop-A+B
 
 Propositions are propositions. This time, please notice the strong use
 of function extensionality, used twice here.
@@ -812,7 +814,7 @@ the type family that maps 𝟘₂ to A and consequently, 𝟙₂ maps to B.
 ::
 
    abstract
-     +-of-sets-is-set
+     +-of-sets-is-set +-set
        : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
        → isSet A → isSet B
        -------------------
