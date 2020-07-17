@@ -44,102 +44,104 @@ Transport and Univalence
 
 ::
 
+
      transport-ua
-       : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}
-       → (B : A → Type ℓ₂)
-       → {x y : A}
-       → (p : x == y)
-       → (e : B x ≃ B y)
-       → ap B p == ua e
-       -----------------
-       → (u : B x) → transport B p u == (fun≃ e) u
+          : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}
+          → (B : A → Type ℓ₂)
+          → {x y : A}
+          → (p : x == y)
+          → (e : B x ≃ B y)
+          → ap B p == ua e
+          -----------------
+          → (u : B x) → transport B p u == (fun≃ e) u
 
      transport-ua B idp e q u =
-       begin
-         transport B idp u
-           ==⟨ transport-family-idtoeqv B idp u ⟩
-         fun≃ (idtoeqv (ap B idp)) u
-           ==⟨ ap (λ r → fun≃ (idtoeqv r) u) q ⟩
-         fun≃ (idtoeqv (ua e)) u
-           ==⟨ ap (λ r → fun≃ r u) (ua-β e) ⟩
-         fun≃ e u
-       ∎
+          begin
+            transport B idp u
+              ==⟨ transport-family-idtoeqv B idp u ⟩
+            fun≃ (idtoeqv (ap B idp)) u
+              ==⟨ ap (λ r → fun≃ (idtoeqv r) u) q ⟩
+            fun≃ (idtoeqv (ua e)) u
+              ==⟨ ap (λ r → fun≃ r u) (ua-β e) ⟩
+            fun≃ e u
+          ∎
 
 ::
 
      funext-transport-ua
-       : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}
-       → (B : A → Type ℓ₂)
-       → {x y : A}
-       → (p : x == y)
-       → (e : B x ≃ B y)
-       → ap B p == ua e
-       -----------------
-       → transport B p == (fun≃ e)
+        : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}
+        → (B : A → Type ℓ₂)
+        → {x y : A}
+        → (p : x == y)
+        → (e : B x ≃ B y)
+        → ap B p == ua e
+        -----------------
+        → transport B p == (fun≃ e)
 
      funext-transport-ua B p e x₁ = funext (transport-ua B p e x₁)
 
-::
+   module _
+    {ℓ : Level} {A B : Type ℓ}
+    where
 
-     coe-ua
-       : ∀ {ℓ : Level} {A B : Type ℓ}
-       → (α : A ≃ B)
-       -------------------------------------
-       → (∀ x → (coe (ua α) x) == ((α ∙) x))
+    abstract
 
-     coe-ua α = happly (ap (lemap) (ua-β α))
+      coe-ua
+        : (α : A ≃ B)
+        -------------------------------------
+        → (∀ x → (coe (ua α) x) == ((α ∙) x))
 
-::
+      coe-ua α = happly (ap (lemap) (ua-β α))
 
-     coe-ua-·
-       : ∀ {ℓ : Level} {A B C : Type ℓ}
-       → (α : A ≃ B)
-       → (β : B ≃ C)
-       --------------------------------------------------
-       → coe (ua α · ua β) ≡ ((coe (ua α)) :> coe (ua β))
+      coe-ua-·
+        : {C : Type ℓ}
+        → (α : A ≃ B)
+        → (β : B ≃ C)
+        --------------------------------------------------
+        → coe (ua α · ua β) ≡ ((coe (ua α)) :> coe (ua β))
 
-     coe-ua-· α β =
-       begin
-         coe (ua α · ua β)
-          ≡⟨⟩
-         tr (λ X → X) (ua α · ua β)
-          ≡⟨ ! (transport-comp (ua α) (ua β)) ⟩
-         (tr (λ X → X) (ua α)) :> (tr (λ X → X) (ua β))
-           ≡⟨ idp ⟩
-        ((coe (ua α)) :> coe (ua β))
-       ∎
+      coe-ua-· α β =
+          begin
+            coe (ua α · ua β)
+              ≡⟨⟩
+            tr (λ X → X) (ua α · ua β)
+              ≡⟨ ! (transport-comp (ua α) (ua β)) ⟩
+            (tr (λ X → X) (ua α)) :> (tr (λ X → X) (ua β))
+              ≡⟨ idp ⟩
+            ((coe (ua α)) :> coe (ua β))
+          ∎
 
-In addition, we can state a similar result with ``idtoequiv``:
+      idtoequiv-ua-· ite-ua-·
+        : {C : Type ℓ}
+        → (α : A ≃ B)
+        → (β : B ≃ C)
+        ---------------------------------------------------
+        → idtoeqv (ua α · ua β) ≡ ((idtoeqv (ua α)) :>≃ (idtoeqv (ua β)))
 
-::
+      idtoequiv-ua-· α β = sameEqv (coe-ua-· α β)
+          where open import HLevelLemmas
+      ite-ua-· = idtoequiv-ua-·
 
-     idtoequiv-ua-·
-       : ∀ {ℓ : Level} {A B C : Type ℓ}
-       → (α : A ≃ B)
-       → (β : B ≃ C)
-       ---------------------------------------------------
-       → ite (ua α · ua β) ≡ ((ite (ua α)) :>≃ (ite (ua β)))
-
-     idtoequiv-ua-· α β = sameEqv (coe-ua-· α β)
-       where open import HLevelLemmas
-
-     ite-ua-· = idtoequiv-ua-·
-
-::
-
-     postulate
       :>≃-ite-ua
-       : ∀ {ℓ : Level} {A B C : Type ℓ}
-       → (α : A ≃ B)    → (β : B ≃ C)
-       ------------------------------
-       → (α :>≃ β) ≡ ite (ua α · ua β)
+        : {C : Type ℓ}
+        → (α : A ≃ B)  → (β : B ≃ C)
+        ------------------------------
+        → (α :>≃ β) ≡ idtoeqv (ua α · ua β)
 
-     {- -- below is the proof, but it blows up the time of type-checking.
-       lemma α β =
-           begin
-             (α :>≃ β)
-               ≡⟨ ap₂ (λ x y → x :>≃ y) (! (ua-β α)) (! (ua-β β)) ⟩
-             (ite (ua α)) :>≃ (ite (ua β))
-               ≡⟨ ! (ite-ua-· α β) ⟩
-             ite (ua α · ua β)
-     -}
+      :>≃-ite-ua {C = C} α β =
+        begin
+          (α :>≃ β)
+            ≡⟨ sameEqv cβ ⟩
+          (α :>≃ (idtoeqv (ua β)))
+            ≡⟨ sameEqv cα ⟩
+          (idtoeqv {A = A} (ua {A = A} α)) :>≃ (idtoeqv (ua β))
+            ≡⟨ ! ite-ua-· {C = C} α β ⟩
+          idtoeqv (ua α · ua β)
+          ∎
+          where
+          cβ : π₁ (α :>≃ β) == π₁ (α :>≃ idtoeqv (ua β))
+          cβ = ap (λ w → π₁ (α :>≃ w)) (! ua-β β)
+
+          cα : π₁ (α :>≃ idtoeqv (ua β)) ≡ π₁ (idtoeqv (ua α) :>≃ idtoeqv (ua β))
+          cα = ap (λ w → π₁ (w :>≃ idtoeqv (ua β))) (! ua-β α)
+
