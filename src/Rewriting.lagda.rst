@@ -12,6 +12,7 @@ approach as in [HoTT-Agda]. However, this is unsafe.
 ::
 
      open import BasicTypes
+     open import BasicFunctions
 
 {: .axiom}
 
@@ -26,3 +27,18 @@ approach as in [HoTT-Agda]. However, this is unsafe.
          → Type ℓ
 
      {-# BUILTIN REWRITE _↦_ #-}
+
+
+
+For convenience, we add the following rewriting rule.
+
+::
+
+     postulate
+          runit
+            : ∀ {ℓ : Level} {A : Type ℓ}  {a a' : A}
+            → {p : a == a'}
+            --------------
+            → p · idp ↦ p
+
+     {-# REWRITE runit #-}

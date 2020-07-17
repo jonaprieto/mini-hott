@@ -264,14 +264,6 @@ Synomys:
      ×-isSet       = isSet-prod
      set×set→set   = isSet-prod
 
-::
-
-     postulate
-       ×-groupoid
-         : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
-         → isGroupoid A → isGroupoid B
-         -------------------
-         → isGroupoid (A × B)
 
 ::
 
@@ -638,36 +630,32 @@ implicit parameters.
 
 ::
 
-   postulate
-     law-excluded-middle
-       : ∀ {ℓ} {P : Type ℓ}
-       → isProp P
-       ------------
-       → P + (¬ P)
+   LEM
+    : ∀ {ℓ} (P : Type ℓ) → Type _
 
-   LEM = law-excluded-middle
+   LEM P = isProp P → P + (¬ P)
 
 and the more general propositions-as-types formulation of the law of
 excluded middle is:
 
 ::
 
-   postulate
-    LEM∞
-      : ∀ {ℓ : Level} {A : Type ℓ}
-      → A + (¬ A)
+   LEM∞
+      : ∀ {ℓ : Level} (A : Type ℓ)
+      → Type _
 
-::
+   LEM∞ A = A + (¬ A)
 
    law-double-negation
-    : ∀ {ℓ} {P : Type ℓ}
-    → isProp P
-    -----------
-    → (¬ (¬ P)) → P
+      : ∀ {ℓ : Level} {P : Type ℓ}
+      → (LEM∞ P)
+      → isProp P
+      -----------
+      → (¬ (¬ P)) → P
 
-   law-double-negation iP with LEM iP
-   law-double-negation iP | inl x = λ _ → x
-   law-double-negation iP | inr x = λ p→⊥→⊥ → ⊥-elim (p→⊥→⊥ x)
+   law-double-negation lem iP with lem
+   law-double-negation lem iP | inl x = λ _ → x
+   law-double-negation lem iP | inr x = λ p→⊥→⊥ → ⊥-elim (p→⊥→⊥ x)
 
 Law excluded middle and law of double negation are both equivalent.
 

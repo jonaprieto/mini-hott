@@ -69,7 +69,7 @@ More syntax:
 
 ::
 
-     _:>≃_
+     _:>≃_ ≃-trans
        : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}{B : Type ℓ₂}{C : Type ℓ₃}
        → A ≃ B
        → B ≃ C

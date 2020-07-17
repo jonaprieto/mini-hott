@@ -70,24 +70,3 @@ Sigma equivalences
          → (ap π₁ (pair= γ) == α) ≃ (π₁ γ == α)
 
        ap-π₁-pair=Equiv {a₁ = a₁} α (β , γ) = qinv-≃ f (g , f-g , g-f)
-
-::
-
-     postulate
-       ∑-≃-∑-with-≃
-         : ∀ {ℓ₁ ℓ₂ ℓ₃ ℓ₄ : Level}{A : Type ℓ₁}{B : A → Type ℓ₂}{A' : Type ℓ₃}{B' : A' → Type ℓ₄}
-          → (e : A ≃ A')
-          → ∑ A B ≃ ∑ A' B'
-
-::
-
-     postulate
-       ∑-≃-∑-with-→
-         : ∀ {ℓ₁ ℓ₂ ℓ₃ ℓ₄}{A : Type ℓ₁}{B : A → Type ℓ₂}{A' : Type ℓ₃}{B' : A' → Type ℓ₄}
-          → (f : A → A')
-          → (α : (a : A) → B a → B' (f a))
-          -- Then if
-          → isEquiv f
-          → (a : A) → isEquiv (α a)
-          -------------------------------------------
-          → isEquiv (∑-map {B = B}{B' = B'} f α)

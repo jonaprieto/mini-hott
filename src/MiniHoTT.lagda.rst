@@ -48,13 +48,10 @@ Everything in Mini HoTT
 
      open import SigmaEquivalence public
      open import SigmaPreserves public
-
      open import PiPreserves public
 
      open import UnivalenceAxiom
-
      open import HLevelLemmas public
-
      open import HedbergLemmas public
 
      open import UnivalenceIdEquiv public
@@ -62,32 +59,23 @@ Everything in Mini HoTT
 
      open import EquivalenceReasoning public
      open import UnivalenceTransport public
+     open import TypesofMorphisms public
+     open import NaturalType
+     open import BasicEquivalences public
+     open import Connectedness public
 
+     {-
      open import Rewriting public
-
      open import CircleType public
      open import IntervalType public
      open import SuspensionType public
      open import TruncationType public
      open import SetTruncationType public
-
-     open import TypesofMorphisms public
-
-     open import NaturalType
-     {-
      open import IntegerType public
-
-
      open import QuotientType public
      open import RelationType public
-
      open import MonoidType public
      open import GroupType public
-     -}
-
-     open import BasicEquivalences public
-
-     open import Connectedness public
-
      open import FundamentalGroupType public
+     -}
 
