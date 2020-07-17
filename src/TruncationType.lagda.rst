@@ -137,15 +137,6 @@ Truncation Lemmas
 
      trunc-≃-prop pA = lemma333 trunc pA (trunc-rec pA id) ∣_∣
 
-A relation between double implication and the truncation of a type:
-
-::
-
-     postulate
-      trunc-⇔-¬¬
-        : ∀ {ℓ} {X : Type ℓ}
-        → ∥ X ∥ ⇔ (¬ (¬ X))
-
 Using propositional truncation, we are able to define properly the
 logical disjunction and existence as follows.
 

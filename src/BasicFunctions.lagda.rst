@@ -226,7 +226,7 @@ above ones:
 ::
 
    :>-lassoc
-     : ∀ {ℓ : Level} {A B C D : Type ℓ}
+     : ∀ {ℓ₁ ℓ₂ ℓ₃ ℓ₄ : Level} {A : Type ℓ₁}{B : Type ℓ₂}{C : Type ℓ₃}{D : Type ℓ₄}
      → (f : A → B) → (g : B → C) → (h : C → D)
      -----------------------------------------
      → (f :> (g :> h)) == ((f :> g) :> h)
@@ -238,7 +238,7 @@ above ones:
 ::
 
    :>-rassoc
-     : ∀ {ℓ : Level} {A B C D : Type ℓ}
+     : ∀ {ℓ₁ ℓ₂ ℓ₃ ℓ₄ : Level} {A : Type ℓ₁}{B : Type ℓ₂}{C : Type ℓ₃}{D : Type ℓ₄}
      → (f : A → B) → (g : B → C) → (h : C → D)
      -----------------------------------------
      → ((f :> g) :>  h) == (f :> (g :> h))
@@ -439,68 +439,6 @@ Uncurryfication
 
    uncurry f (x , y) = f x y
 
-Finite iteration of a function
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-For any endo-function in :math:`A`, :math:`f: A \to A`, the following
-function iterates :math:`n` times :math:`f`
-
-.. math::  f^{n+1}(x) = f (f^{n} (x))
-
-::
-
-   infixl 50 _^_
-   _^_
-     : ∀ {ℓ : Level} {A : Type ℓ}
-     → (f : A → A) → (n : ℕ)
-     -----------------------
-     → (A → A)
-
-   f ^ 0 = id
-   f ^ succ n = λ x → f ((f ^ n) x)
-
-::
-
-   app-comm
-     : ∀ {ℓ : Level}{A : Type ℓ}
-     → (f : A → A) → (n : ℕ)
-     → (x : A)
-     ---------------------------------
-     → (f ((f ^ n) x) ≡ ((f ^ n) (f x)))
-
-   app-comm f 0 x = idp
-   app-comm f (succ n) x rewrite app-comm f n x = idp
-
-::
-
-   app-comm₂
-     : ∀ {ℓ : Level}{A : Type ℓ}
-     → (f : A → A)
-     → (n k : ℕ)
-     → (x : A)
-     ------------------------------------------
-     → ((f ^ (n +ₙ k)) x) ≡ (f ^ n) ((f ^ k) x)
-
-   app-comm₂ f 0 0 x = idp
-   app-comm₂ f 0 (succ k) x = idp
-   app-comm₂ f (succ n) 0 x rewrite plus-runit n  = idp
-   app-comm₂ f (succ n) (succ k) x rewrite app-comm₂ f n (succ k) x = idp
-
-::
-
-   postulate
-     app-comm₃
-       : ∀ {ℓ : Level}{A : Type ℓ}
-       → (f : A → A)
-       → (k n : ℕ)
-       → (x : A)
-       ------------------------------------------
-       → (f ^ k) ((f ^ n) x) ≡ (f ^ n) ((f ^ k) x)
-
-   -- app-comm₃ f 0 0 x = idp
-   -- app-comm₃ f 0 (succ k) x = idp
-   -- app-comm₃ f (succ n) 0 x rewrite plus-runit n  = idp
-   -- app-comm₃ f (succ n) (succ k) x rewrite app-comm₃ f n (succ k) x = {!idp!}
 
 Coproducts functions
 ~~~~~~~~~~~~~~~~~~~~
@@ -618,3 +556,84 @@ The begining of a proof:
 ::
 
    open EquationalReasoning public
+
+
+Finite iteration of a function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For any endo-function in :math:`A`, :math:`f: A \to A`, the following
+function iterates :math:`n` times :math:`f`
+
+.. math::  f^{n+1}(x) = f (f^{n} (x))
+
+::
+
+   infixl 50 _^_
+   _^_
+     : ∀ {ℓ : Level} {A : Type ℓ}
+     → (f : A → A) → (n : ℕ)
+     -----------------------
+     → (A → A)
+
+   f ^ 0 = id
+   f ^ succ n = λ x → f ((f ^ n) x)
+
+::
+
+   app-comm
+     : ∀ {ℓ : Level}{A : Type ℓ}
+     → (f : A → A) → (n : ℕ)
+     → (x : A)
+     ---------------------------------
+     → (f ((f ^ n) x) ≡ ((f ^ n) (f x)))
+
+   app-comm f 0 x = idp
+   app-comm f (succ n) x rewrite app-comm f n x = idp
+
+::
+
+   app-comm₂
+     : ∀ {ℓ : Level}{A : Type ℓ}
+     → (f : A → A)
+     → (n k : ℕ)
+     → (x : A)
+     ------------------------------------------
+     → ((f ^ (n +ₙ k)) x) ≡ (f ^ n) ((f ^ k) x)
+
+   app-comm₂ f 0 0 x = idp
+   app-comm₂ f 0 (succ k) x = idp
+   app-comm₂ f (succ n) 0 x rewrite plus-runit n  = idp
+   app-comm₂ f (succ n) (succ k) x rewrite app-comm₂ f n (succ k) x = idp
+
+
+::
+
+   app-comm₃
+      : ∀ {ℓ : Level}{A : Type ℓ}
+      → (f : A → A)
+      → (k n : ℕ)
+      → (x : A)
+      ------------------------------------------
+      → (f ^ k) ((f ^ n) x) ≡ (f ^ n) ((f ^ k) x)
+
+   app-comm₃ f k 0 x = idp
+   app-comm₃ f k n@(succ _) x =
+      begin
+         (f ^ k) ((f ^ n) x)
+         ≡⟨ ! (app-comm₂ f k n x) ⟩
+         (f ^ (k +ₙ n)) x
+         ≡⟨ temp-ap (λ p → (f ^ p) x) (plus-comm k n) ⟩
+         (f ^ (n +ₙ k)) x
+         ≡⟨ app-comm₂ f n k x ⟩
+         (f ^ n) ((f ^ k) x)
+         ∎
+         where
+         temp-ap
+            : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
+            → (f : A → B) {a₁ a₂ : A}
+            → a₁ == a₂
+            --------------
+            → f a₁ == f a₂
+
+         temp-ap f idp = idp
+

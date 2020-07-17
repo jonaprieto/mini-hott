@@ -1,8 +1,6 @@
 ::
 
    {-# OPTIONS --without-K --exact-split #-}
-   -- module _ where
-
    open import TransportLemmas
    open import EquivalenceType
 
@@ -76,30 +74,52 @@ Equivalence reasoning
 
 ::
 
-     postulate
-      move-right-from-composition
+     move-right-from-composition
+      : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level}{A : Type ℓ₁}{B : Type ℓ₂}{C : Type ℓ₃}
+      → (f : A → B) → (e : B ≃ C) → (g : A → C)
+      → f :> (e ∙→) ≡ g
+      --------------------------------------
+      →           f ≡ g :> (e ∙←)
+
+     move-right-from-composition f e .(λ x → π₁ e (f x)) idp =
+       begin
+        f
+          ≡⟨⟩
+        f :> id
+          ≡⟨ ap (λ w → f :> w) (funext (λ x → ! (rlmap-inverse-h e x))) ⟩
+        f :> ((e ∙→) :> (e ∙←))
+          ≡⟨ :>-lassoc f (e ∙→) (e ∙←) ⟩
+        (f :> (e ∙→)) :> (e ∙←)
+        ∎ where open import FunExtAxiom
+
+     move-left-from-composition
         : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level}{A : Type ℓ₁}{B : Type ℓ₂}{C : Type ℓ₃}
-        → (e1 : A → B) → (e2 : B ≃ C) → (e3 : A → C)
-        → e1 :> (e2 ∙) ≡ e3
+        → (f : A → B) → (e : B ≃ C) → (g : A → C)
+        →           f ≡ g :> (e ∙←)
         --------------------------------------
-        →           e1 ≡ e3 :> (e2 ∙←)
+        → f :> (e ∙→) ≡ g
 
-      move-left-from-composition
+     move-left-from-composition .(λ x → π₁ (π₁ (π₂ e (g x)))) e g idp
+        = :>-rassoc g (e ∙←) (e ∙→)
+          · ap (λ w → g :> w) (funext (λ x → lrmap-inverse-h e x))
+        where open import FunExtAxiom
+
+     2-out-of-3-property
         : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level}{A : Type ℓ₁}{B : Type ℓ₂}{C : Type ℓ₃}
-        → (e1 : A → B) → (e2 : B ≃ C) → (e3 : A → C)
-        →           e1 ≡ e3 :> (e2 ∙←)
-        --------------------------------------
-        → e1 :> (e2 ∙) ≡ e3
+        → (f : A → C) → (e : A ≃ B) → (g : B ≃ C)
+        → f ≡ (e ∙→) :> (g ∙→)
+        -------------------------
+        → isEquiv f
 
-      2-out-of-3-property
-       : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level}{A : Type ℓ₁}{B : Type ℓ₂}{C : Type ℓ₃}
-       → (e1 : A → C) → (e2 : A ≃ B) → (e3 : B ≃ C)
-       → e1 ≡ (e2 ∙) :> (e3 ∙)
-       -------------------------
-       → isEquiv e1
+     2-out-of-3-property .(λ x → π₁ g (π₁ e x)) e g idp = comp-is-equiv
+        where
+        comp-is-equiv : isEquiv ((e ∙→) :> (g ∙→))
+        comp-is-equiv = π₂ (≃-trans e g)
 
-      inv-of-equiv-composition
+     inv-of-equiv-composition
         : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}{B : Type ℓ₂}{C : Type ℓ₃}
         → (f : A ≃ B)
         → (g : B ≃ C)
-        → remap ((f ∙→) :> (g ∙→) ,  π₂ (≃-trans f g)) ≡ (g ∙←) :> (f ∙←)
+        → remap ((f ∙→) :> (g ∙→) ,  π₂ (≃-trans f g))
+          ≡ (g ∙←) :> (f ∙←)
+     inv-of-equiv-composition f g = idp

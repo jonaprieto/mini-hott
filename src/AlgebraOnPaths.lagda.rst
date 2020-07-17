@@ -146,21 +146,6 @@ Some properties on the groupoid structure of equalities
 
    ·-runit idp = idp
 
-For convenience, we add the following rewriting rule.
-
-::
-
-   open import Rewriting
-
-   postulate
-     runit
-       : ∀ {ℓ : Level} {A : Type ℓ}  {a a' : A}
-       → {p : a == a'}
-       --------------
-       → p · idp ↦ p
-
-   {-# REWRITE runit #-}
-
 ::
 
    ·-lunit

@@ -79,7 +79,7 @@ Equivalence Type
 
 ::
 
-     lemap
+     lemap ≃-to-→ fun≃ _∙ _∙→ apply
        : A ≃ B
        -------
        → (A → B)
@@ -100,7 +100,7 @@ More syntax:
 
 ::
 
-     remap
+     remap ≃-to-← invfun≃ _∙← rapply
        : A ≃ B
        ---------
        → (B → A)
@@ -120,7 +120,7 @@ The maps of an equivalence are inverses in particular
 
 ::
 
-     lrmap-inverse
+     lrmap-inverse ∙→∘∙←
        : (e : A ≃ B) → {b : B}
        -----------------------
        → (e ∙→) ((e ∙←) b) == b
@@ -133,7 +133,7 @@ The maps of an equivalence are inverses in particular
 
 ::
 
-     rlmap-inverse
+     rlmap-inverse ∙←∘∙→
        : (e : A ≃ B) → {a : A}
        ------------------------
        → (e ∙←) ((e ∙→) a) == a
@@ -146,7 +146,7 @@ The maps of an equivalence are inverses in particular
 
 ::
 
-     lrmap-inverse-h
+     lrmap-inverse-h  ∙→∘∙←-h
        : (e : A ≃ B)
        ------------------------
        → ((e ∙→) ∘ (e ∙←)) ∼ id
@@ -159,7 +159,7 @@ The maps of an equivalence are inverses in particular
 
 ::
 
-     rlmap-inverse-h
+     rlmap-inverse-h ∙←∘∙→-h
        : (e : A ≃ B)
        ------------------------
        → ((e ∙←) ∘ (e ∙→)) ∼ id
