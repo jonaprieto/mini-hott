@@ -24,7 +24,7 @@ Univalence lemmas
    module UnivalenceComposition where
 
 ::
-
+    abstract
      ua-comp
        : ∀ {ℓ : Level} {A B C : Type ℓ}
        → (α : A ≃ B)
@@ -45,25 +45,23 @@ Inverses are preserved (Type-check this takes ~30min)
 
 ::
 
-     postulate
-      ua-inv-r
+     ua-inv-r
        : ∀ {ℓ : Level} {A B : Type ℓ}
        → (α : A ≃ B)
        -------------------------------
        → ua α · ua (≃-sym α) == refl A
 
-     {-
-     ua-inv-r {A = A} α =
+     ua-inv-r {A = A}{B} α =
        begin
          ua α · ua (≃-sym α)
-           ==⟨ ! (ua-comp α (≃-sym α)) ⟩
-         ua (≃-trans α (≃-sym α))
-           ==⟨ ap ua (≃-trans-inv α) ⟩
+           ==⟨ ! ua-comp {A = A}{B}{A} α (≃-sym α) ⟩
+         ua (α :>≃ (≃-sym α))
+           ==⟨ ap ua (sameEqv (ap π₁ (≃-trans-inv α))) ⟩
          ua idEqv
-           ==⟨ UnivalenceLemmas.ua-id ⟩
+           ==⟨ UnivalenceIdEquiv.UnivalenceIdEquiv.ua-id ⟩
          refl A
        ∎
-     -}
+
 
 ::
 

@@ -64,12 +64,14 @@ Everything in Mini HoTT
      open import BasicEquivalences public
      open import Connectedness public
 
+     open import TruncationType public
+
      {-
      open import Rewriting public
      open import CircleType public
      open import IntervalType public
      open import SuspensionType public
-     open import TruncationType public
+
      open import SetTruncationType public
      open import IntegerType public
      open import QuotientType public

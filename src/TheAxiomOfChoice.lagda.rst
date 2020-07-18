@@ -24,10 +24,11 @@ axiom of choice:
      (∀ (b : B) . ∃ (a : A b) . P(b,a))
      ⇒ ∃ (g : (b : B) → A b) . ∀ (b : B) . P (b, g(b)) .
 
-::
+The postulate
 
-     postulate
-       Choice
+:
+
+     Choice
          : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level }
          -- Asummption 1:
            (B : Type ℓ₁)
