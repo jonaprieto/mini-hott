@@ -60,6 +60,8 @@ Everything in Mini HoTT
      open import EquivalenceReasoning public
      open import UnivalenceTransport public
      open import TypesofMorphisms public
+     open import SectionsAndRetractions public
+
      open import NaturalType
      open import BasicEquivalences public
      open import Connectedness public

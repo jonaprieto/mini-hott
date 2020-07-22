@@ -147,6 +147,7 @@ Gylterud’s tr₂-commute:
 
 ::
 
+
    tr₂-commute
      : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁} {B : A → Type ℓ₂}
      → (C : (a : A) → (B a → Type ℓ₃))

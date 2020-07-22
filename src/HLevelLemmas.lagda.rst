@@ -16,7 +16,6 @@
    open import QuasiinverseType
    open import QuasiinverseLemmas
 
-   open import FunExtAxiom
    open import UnivalenceAxiom
    open import HLevelTypes
 
@@ -137,14 +136,13 @@ of function extensionality, used twice here.
 
      propIsProp
        : ∀ {ℓ : Level} {A : Type ℓ}
-       -- (funext : Function-Extensionality)
-       -------------------------------------
        → isProp (isProp A)
 
      propIsProp {_}{A} =
        λ x y → funext (λ a →
                  funext (λ b
                    → propIsSet x a b (x a b) (y a b)))
+       where open import FunExtAxiom
 
 ::
 
@@ -167,6 +165,7 @@ proposition.
        → isProp ((a : A) → B a)
 
      isProp-pi props f g = funext λ a → props a (f a) (g a)
+      where open import FunExtAxiom
 
 ::
 
@@ -211,6 +210,7 @@ Synomyms:
          funext (λ y →
            funext (λ p →
              funext (λ q → propIsSet (p₂ x y) p q (p₁ x y p q) (p₂ x y p q)))))
+            where open import FunExtAxiom
 
 ::
 
@@ -447,7 +447,7 @@ Equivalences preserve propositions
 
 ::
 
-     isProp-≃
+     isProp-≃ equiv-preserves-prop
        : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
        → (A ≃ B)
        → isProp A
@@ -461,10 +461,32 @@ Equivalences preserve propositions
          lemap eq ((remap eq) y) ==⟨ lrmap-inverse eq ⟩
          y
        ∎
+     equiv-preserves-prop = isProp-≃
+
+     isContr-≃  equiv-preserves-contr
+        : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
+        → (A ≃ B)
+        → isContr A
+        ----------
+        → isContr B
+
+     isContr-≃ {A = A}{B} e A-is-contr
+      -- below, could be shorted, by an explicity center, and so on.
+        = contractible-from-inhabited-prop center-of-B
+            (contr-is-prop
+              (contractible-from-inhabited-prop
+                center-of-B
+                (equiv-preserves-prop e A-is-prop)))
+        where
+        A-is-prop : A is-prop
+        A-is-prop = contr-is-prop A-is-contr
+        center-of-B : B
+        center-of-B = (e ∙→) (center-of A-is-contr)
+     equiv-preserves-contr = isContr-≃
 
 ::
 
-     is-set-equiv-to-set
+     is-set-equiv-to-set  equiv-preserves-sets
        : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : Type ℓ₂}
        → A ≃ B
        → isSet A
@@ -498,12 +520,13 @@ Equivalences preserve propositions
             ∎
      equiv-with-a-set-is-set = is-set-equiv-to-set
      ≃-with-a-set-is-set = is-set-equiv-to-set
+     equiv-preserves-sets = is-set-equiv-to-set
 
 Above, we might want to use univalence to rewrite :math:`x ≡B y`.
 Unfortunately, we can not because a universe level matters, at least for
 now. A first proof would have been saying :math:`x ≡A y` is a mere
 proposition and since :math:`A ≃ B`, :math:`x ≡B y` is also a mere
-proposition. So, :math:`B` is a set. Second proof is construct a term of
+proposition. So, :math:`B` is a set. Second proof is to construct a term of
 ‘isSet B’ by using the inverse function from the equivalence and some
 path algebra. Not happy with this but it works.
 
@@ -520,7 +543,7 @@ path algebra. Not happy with this but it works.
          π₁ (≃-trans α (≃-sym α)) ==⟨ refl _ ⟩
          π₁ (≃-sym α) ∘ π₁ α      ==⟨ funext (rlmap-inverse-h α) ⟩
          id
-       ∎)
+       ∎) where open import FunExtAxiom
 
 The following lemma is telling us, something we should probably knew
 already: Equivalence of propositions is the same logical equivalence.
@@ -587,11 +610,13 @@ already: Equivalence of propositions is the same logical equivalence.
 
      pi-is-set  setBa f g = b
        where
+       open import FunExtAxiom
        a : isProp (f ∼ g)
        a h1 h2 = funext λ x → setBa x (f x) (g x) (h1 x) (h2 x)
 
        b : isProp (f ≡ g)
        b = isProp-≃ (≃-sym eqFunExt) (pi-is-prop λ a → setBa a (f a) (g a))
+
 
 ::
 
@@ -659,22 +684,6 @@ excluded middle is:
 
 Law excluded middle and law of double negation are both equivalent.
 
-Weak extensionality principle:
-
-::
-
-   WeakExtensionalityPrinciple
-     : ∀ {ℓ : Level} {A : Type ℓ}  {P : A → Type ℓ}
-     → ((x : A) → isContr (P x))
-     -------------------------
-     → isContr ( ∏ A P )
-
-   WeakExtensionalityPrinciple {A = A}{P} f =
-     (fx , λ h →  ! funext (λ x → ! (π₂ (f x)) (h x)))
-     where
-      fx : ∏ A P
-      fx = λ x → π₁ (f x)
-
 ::
 
    open import SigmaEquivalence
@@ -721,10 +730,8 @@ Weak extensionality principle:
      → isSet (A ≡ B)
 
    ≡-is-set-from-sets iA iB = equiv-with-a-set-is-set (≃-sym eqvUnivalence) (≃-is-set-from-sets iA iB)
-
-::
-
    ≡-set = ≡-is-set-from-sets
+
 
 A handy result is that the two point type is a set. We know already that
 𝟙 is indeed mere propositions and hence a set. The two point type 𝟚 is
@@ -818,9 +825,6 @@ the type family that maps 𝟘₂ to A and consequently, 𝟙₂ maps to B.
 
          fact₂ : isSet (P𝟚-to-A+B {ℓ₃ = ℓ₂} A B 𝟙₂)
          fact₂ = ≃-with-a-set-is-set (lifting-equivalence B) iB
-
-::
-
      +-set = +-of-sets-is-set
 
 ::
@@ -943,3 +947,58 @@ Being contractible give you a section.
 
      contr-has-section {B = B} A-is-contr a u
        = λ a' → tr B (contr-connects A-is-contr a a') u
+
+::
+
+     fiber-prop-∑-is-base
+        : ∀ {ℓ₁ ℓ₂ : Level}
+        → {A : Type ℓ₁} {B : A → Type ℓ₂}
+        → (∏[ a ∶ A ] (B a))
+        → (∏[ a ∶ A ] isProp (B a))
+        → ∑ A B ≃ A
+     fiber-prop-∑-is-base f fibers-prop
+        = ∑-≃-base (λ a → (f a , fibers-prop a (f a)))
+
+::
+
+     open import EquivalenceReasoning
+     simplify-pair
+        : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : A → Type ℓ₂}
+        → {u₁ u₂ : A} {v₁ : B u₁}{v₂ : B u₂}
+        → ((a : A) → isProp (B a))
+        → ((u₁ , v₁) ≡ (u₂ , v₂)) ≃ (u₁ ≡ u₂)
+     simplify-pair {A = A}{B}{u₁}{u₂}{v₁}{v₂} B-prop =
+        begin≃
+          (u₁ , v₁) ≡ (u₂ , v₂)
+          ≃⟨ ≃-sym (pair=Equiv _ _) ⟩
+          (∑[ α ∶ u₁ ≡ u₂ ] (tr B α v₁ ≡ v₂))
+          ≃⟨ ∑-≃-base (λ {idp → B-prop _ _ _ ,
+          prop-is-set (B-prop _) _ _ (B-prop _ _ _)}) ⟩
+          u₁ ≡ u₂
+          ≃∎
+
+     simplify-triple'
+        : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}{B : A → Type ℓ₂}
+        → {C : (a : A) → B a → Type ℓ₃}
+        → {u₁ u₂ : A} {v₁ : B u₁}{v₂ : B u₂} {c₁ : C u₁ v₁}{c₂ : C u₂ v₂}
+        → ((a : A) (b : B a) → isProp (C a b))
+        → ((u₁ , v₁) , c₁) ≡ ((u₂ , v₂) , c₂)
+        ≃ ((u₁ , v₁) ≡ (u₂ , v₂))
+
+     simplify-triple' {A = A}{B}{C}{u₁}{u₂}{v₁}{v₂}{c₁}{c₂} C-prop =
+        begin≃
+        ((u₁ , v₁) , c₁) ≡ ((u₂ , v₂) , c₂)
+        ≃⟨ ≃-sym (pair=Equiv _ _) ⟩
+        (∑[ α ∶ (u₁ , v₁) ≡ (u₂ , v₂) ] (tr _ α c₁ ≡ c₂))
+        ≃⟨ ∑-≃-base (λ {idp → C-prop _ _ _ _ , λ {idp → prop-is-set (C-prop _ _) _ _ _ _} }) ⟩
+        ((u₁ , v₁) ≡ (u₂ , v₂))
+        ≃∎
+
+     simplify-triple
+        : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}{B : A → Type ℓ₂}
+        → {C : (a : A) → B a → Type ℓ₃}
+        → {u₁ u₂ : A} {v₁ : B u₁}{v₂ : B u₂} {c₁ : C u₁ v₁}{c₂ : C u₂ v₂}
+        → ((a : A) (b : B a) → isProp (C a b))
+        → (u₁ , v₁ , c₁) ≡ (u₂ , v₂ , c₂)
+        ≃ ((u₁ , v₁) ≡ (u₂ , v₂))
+     simplify-triple {A = A}{B}{C} C-prop = ≃-trans tuples-assoc (simplify-triple' {A = A}{B}{C} C-prop)

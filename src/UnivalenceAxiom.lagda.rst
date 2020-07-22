@@ -5,7 +5,6 @@
    open import EquivalenceType
 
    open import HomotopyType
-   open import FunExtAxiom
    open import QuasiinverseType
    open import QuasiinverseLemmas
 
@@ -126,12 +125,13 @@ Computation rules
 
 ::
 
-     ua-β
+     ua-β idtoeqv-ua-β
        : (α : A ≃ B)
        ----------------------
        → idtoeqv (ua α) == α
 
      ua-β eqv = lrmap-inverse eqvUnivalence
+     idtoeqv-ua-β = ua-β
 
 ::
 

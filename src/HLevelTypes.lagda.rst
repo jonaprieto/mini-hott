@@ -40,6 +40,14 @@ Synonym:
    isSingleton  = isContr
    _is-contr    = isContr
 
+   center-of
+     : ∀ {ℓ : Level}
+     → {A : Type ℓ}
+     → A is-contr
+     → A
+   center-of (a , _) = a
+
+
 If a type is contractible, any of its points is a center of contraction:
 
 <img “src=”assets/images/issinglenton.png" width=“400” align=“right”>

@@ -14,7 +14,7 @@ Fibre type
 
 ::
 
-     fibre
+     fibre hfiber
        : (f : A → B)
        → (b : B)
        ---------------
@@ -22,12 +22,9 @@ Fibre type
 
      fibre f b = Σ A (λ a → f a == b)
 
-Synomyms and syntax sugar:
-
-::
-
-     fib   = fibre
-     fiber = fibre
+     hfiber = fibre
+     fib    = fibre
+     fiber  = fibre
 
      syntax fibre f b = f // b
 

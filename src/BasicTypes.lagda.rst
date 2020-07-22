@@ -249,7 +249,7 @@ on the first.
 ::
 
    record
-     ∑ {ℓ₁ ℓ₂ : Level}
+     Σ {ℓ₁ ℓ₂ : Level}
       (A : Type ℓ₁) (B : A → Type ℓ₂)
       -------------------------------
       : Type (ℓ₁ ⊔ ℓ₂)
@@ -260,9 +260,9 @@ on the first.
        π₂ : B π₁
 
    infixr 60 _,_
-   open ∑ public
+   open Σ public
 
-   {-# BUILTIN SIGMA ∑ #-}
+   {-# BUILTIN SIGMA Σ #-}
 
 .. _additionally-syntax-5:
 
@@ -271,7 +271,7 @@ on the first.
 
 ::
 
-   Σ = ∑ -- \Sigma and \sum
+   ∑ = Σ -- \Sigma and \sum
 
    syntax ∑ A (λ a → B) = ∑[ a ∶ A ] B
 
@@ -286,6 +286,7 @@ on the first.
    Σ-s2 : ∀ {ℓ₁ ℓ₂} {A : Type ℓ₁} → (A → Type ℓ₂) → Type (ℓ₁ ⊔ ℓ₂)
    Σ-s2 = Σ _
    syntax Σ-s2 (λ x → B) = Σ[ x ] B
+
 
 Constructor synonyms:
 

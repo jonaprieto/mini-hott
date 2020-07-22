@@ -9,7 +9,6 @@ Univalence Lemma for Identity equivalence
    open import EquivalenceType
 
    open import HomotopyType
-   open import FunExtAxiom
 
    open import EquivalenceType
    open import QuasiinverseType

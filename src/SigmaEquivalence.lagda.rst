@@ -70,3 +70,82 @@ Sigma equivalences
          → (ap π₁ (pair= γ) == α) ≃ (π₁ γ == α)
 
        ap-π₁-pair=Equiv {a₁ = a₁} α (β , γ) = qinv-≃ f (g , f-g , g-f)
+
+::
+
+     pair-≃-∑
+        : ∀ {l1 l2 : Level}{A : Type l1}{B : A → Type l2}
+        → {v w : ∑ A B}
+        → (v ≡ w) ≃ (∑[ α ∶ π₁ v ≡ π₁ w ] (tr B α (π₂ v) ≡ (π₂ w)))
+     pair-≃-∑ = qinv-≃ Σ-componentwise (Σ-bycomponents
+              , (λ { (idp , idp) → idp}) , λ {idp → idp})
+
+::
+
+     tuples-assoc
+        : {ℓ1 ℓ2 ℓ3 : Level}
+        → {A : Type ℓ1}
+        → {B : A → Type ℓ2}
+        → {C : (a : A) → B a → Type ℓ3}
+        → {u₁ u₂ : A} {v₁ : B u₁}{v₂ : B u₂} {c₁ : C u₁ v₁}{c₂ : C u₂ v₂}
+        → (u₁ , v₁ , c₁) ≡ (u₂ , v₂ , c₂)
+        ≃ ((u₁ , v₁) , c₁) ≡ ((u₂ , v₂) , c₂)
+     tuples-assoc = qinv-≃ (λ {idp → idp}) ( (λ {idp → idp}) , (λ {idp → idp}) , (λ {idp → idp}))
+
+     ∑-assoc
+        : {ℓ1 ℓ2 ℓ3 : Level}
+        → {A : Type ℓ1}
+        → {B : A → Type ℓ2}
+        → {C : (a : A) → B a → Type ℓ3}
+        → (∑[ a ∶ A ] (∑[ b ∶ B a ] C a b))
+        ≃ (∑[ ab ∶ ∑ A B ] (C (fst ab) (snd ab)))
+     ∑-assoc = qinv-≃ f
+        (g , (λ { _ → idp}) , λ {_ → idp})
+        where
+        private
+          f = λ {(a , (b , c)) → ( (a , b) , c)}
+          g = λ {((a , b) , c) → (a , (b , c))}
+
+     ∑-assoc'
+        : {ℓ1 ℓ2 ℓ3 : Level}
+        → {A : Type ℓ1}
+        → {B : A → Type ℓ2}
+        → {C : ∑ A B → Type ℓ3}
+        → (∑[ ab ∶ ∑ A B ] (C ab))
+        ≃ (∑[ a ∶ A ] (∑[ b ∶ B a ] C (a , b)))
+
+     ∑-assoc' = qinv-≃ g
+        (f ,  (λ {_ → idp} ) , λ {_ → idp} )
+        where
+        private
+          f = λ {(a , (b , c)) → ( (a , b) , c)}
+          g = λ {((a , b) , c) → (a , (b , c))}
+
+     module _ {ℓ₁ ℓ₂ ℓ₃ ℓ₄ : Level}
+        where
+
+        ∑-comm₂
+          : (A : Type ℓ₁)
+          → (B : A → Type ℓ₂)
+          → (C : A → Type ℓ₃)
+          → (D : (ab : ∑[ ab ∶ ∑ A B ] (C (π₁ ab))) → Type ℓ₄)
+          → (∑[ ab ∶ ∑ A B ] ∑[ c ∶ C (π₁ ab) ] D (ab , c))
+          ≃ (∑[ ac ∶ ∑ A C ] ∑[ b ∶ B (π₁ ac) ] D (( (π₁ ac , b) , π₂ ac)))
+        ∑-comm₂ A B C D = qinv-≃ f (g , ((λ {_ → idp}) , λ _ → idp))
+          where
+          private
+            f = λ { ((a , b) , (c , d)) → (( a , c) , (b , d))}
+            g = λ { ((a , c) , (b , d)) → ((a , b) , (c , d))}
+
+::
+
+     choice
+        : {ℓ1 ℓ2 ℓ3 : Level}
+        → {A : Type ℓ1}
+        → {B : A → Type ℓ2}
+        → {C : (a : A) → B a → Type ℓ3}
+        → Π A (λ a → Σ (B a) (λ b → C a b)) ≃ Σ (Π A B) (λ g → Π A (λ a → C a (g a)))
+
+     choice = qinv-≃ f (g , (λ _ → idp) , (λ _ → idp))
+       where f = λ c → ((λ a → fst (c a)) , (λ a → snd (c a)))
+             g = λ d → (λ a → (fst d a , snd d a))
