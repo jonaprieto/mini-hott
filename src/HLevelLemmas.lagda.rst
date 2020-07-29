@@ -961,13 +961,13 @@ Being contractible give you a section.
 
 ::
 
-     open import EquivalenceReasoning
-     simplify-pair
+   open import EquivalenceReasoning
+   simplify-pair
         : ∀ {ℓ₁ ℓ₂ : Level} {A : Type ℓ₁}{B : A → Type ℓ₂}
         → {u₁ u₂ : A} {v₁ : B u₁}{v₂ : B u₂}
         → ((a : A) → isProp (B a))
         → ((u₁ , v₁) ≡ (u₂ , v₂)) ≃ (u₁ ≡ u₂)
-     simplify-pair {A = A}{B}{u₁}{u₂}{v₁}{v₂} B-prop =
+   simplify-pair {A = A}{B}{u₁}{u₂}{v₁}{v₂} B-prop =
         begin≃
           (u₁ , v₁) ≡ (u₂ , v₂)
           ≃⟨ ≃-sym (pair=Equiv _ _) ⟩
@@ -977,7 +977,7 @@ Being contractible give you a section.
           u₁ ≡ u₂
           ≃∎
 
-     simplify-triple'
+   simplify-triple'
         : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}{B : A → Type ℓ₂}
         → {C : (a : A) → B a → Type ℓ₃}
         → {u₁ u₂ : A} {v₁ : B u₁}{v₂ : B u₂} {c₁ : C u₁ v₁}{c₂ : C u₂ v₂}
@@ -985,7 +985,7 @@ Being contractible give you a section.
         → ((u₁ , v₁) , c₁) ≡ ((u₂ , v₂) , c₂)
         ≃ ((u₁ , v₁) ≡ (u₂ , v₂))
 
-     simplify-triple' {A = A}{B}{C}{u₁}{u₂}{v₁}{v₂}{c₁}{c₂} C-prop =
+   simplify-triple' {A = A}{B}{C}{u₁}{u₂}{v₁}{v₂}{c₁}{c₂} C-prop =
         begin≃
         ((u₁ , v₁) , c₁) ≡ ((u₂ , v₂) , c₂)
         ≃⟨ ≃-sym (pair=Equiv _ _) ⟩
@@ -994,11 +994,11 @@ Being contractible give you a section.
         ((u₁ , v₁) ≡ (u₂ , v₂))
         ≃∎
 
-     simplify-triple
+   simplify-triple
         : ∀ {ℓ₁ ℓ₂ ℓ₃ : Level} {A : Type ℓ₁}{B : A → Type ℓ₂}
         → {C : (a : A) → B a → Type ℓ₃}
         → {u₁ u₂ : A} {v₁ : B u₁}{v₂ : B u₂} {c₁ : C u₁ v₁}{c₂ : C u₂ v₂}
         → ((a : A) (b : B a) → isProp (C a b))
         → (u₁ , v₁ , c₁) ≡ (u₂ , v₂ , c₂)
         ≃ ((u₁ , v₁) ≡ (u₂ , v₂))
-     simplify-triple {A = A}{B}{C} C-prop = ≃-trans tuples-assoc (simplify-triple' {A = A}{B}{C} C-prop)
+   simplify-triple {A = A}{B}{C} C-prop = ≃-trans tuples-assoc (simplify-triple' {A = A}{B}{C} C-prop)
