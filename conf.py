@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # mini-hott documentation build configuration file, created by
-# sphinx-quickstart and based firstly on: 
+# sphinx-quickstart and based firstly on:
 # https://github.com/agda/agda/blob/master/doc/user-manual/conf.py.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -302,7 +302,7 @@ man_pages = [
 texinfo_documents = [
     ('index', 'mini-hott', u'mini-hott Documentation',
      u"Jonathan Prieto-Cubides", 'mini-hott',
-     'A small agda library to work with univalent type theory', 'Miscellaneous'),
+     'A basic agda library to work with univalent type theory', 'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.

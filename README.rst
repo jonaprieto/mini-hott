@@ -14,10 +14,8 @@ Quick start
 Installation
 ~~~~~~~~~~~~
 
-The only prerequisite is to have installed the latest version of
-`Agda <http://github.com/agda/agda>`__ and a text editor with Agda
-support, e.g., Emacs or Atom. Then, you can install the library
-as usual after cloning the sources by running the following command.
+The library should work with the `Agda <http://github.com/agda/agda>`__
+latest version, and it tested with (v 2.6.1).
 
 .. code:: bash
 
@@ -25,6 +23,7 @@ as usual after cloning the sources by running the following command.
 
 For newcomers, the easiest way to install a library is using
 `agda-pkg <http://github.com/agda/agda-pkg>`__
+
 You can run the following commands to install it:
 
 .. code:: bash
@@ -33,17 +32,17 @@ You can run the following commands to install it:
    $ apkg init
    $ apkg install --github jonaprieto/mini-hott
 
-After installing the sources, just include in your code at the top the
+After installing the sources, include at the top of your file the
 following line:
 
 .. code:: agda
-   
+
    open import MiniHoTT
 
 .. toctree::
    :caption: Table of Contents
    :maxdepth: 2
-   
+
    src/Intro
    src/MiniHoTT
    src/BasicTypes
@@ -56,7 +55,6 @@ following line:
    src/CoproductIdentities
    src/DependentAlgebra
    src/FibreType
-   src/Fibrewise
    src/HomotopyType
    src/HomotopyLemmas
    src/EquivalenceType
@@ -80,6 +78,7 @@ following line:
    src/HedbergLemmas
    src/HLevelLemmas
    src/TypesofMorphisms
+   src/SectionsAndRetractions
    src/Rewriting
    src/SetTruncationType
    src/ProductIdentities
@@ -96,25 +95,6 @@ following line:
    src/NaturalType
    src/Connectedness
    src/TheAxiomOfChoice
-
-
-Contributors
-------------
-
-Collaborations are always welcomed. At the moment, me,
-Jonathan Prieto-Cubides, I'm using the library to type-check
-my proofs for my research project at the `University of
-Bergen <https://www.uib.no/>`__.
-
--  `Jonathan Prieto-Cubides <mailto:jonathan.cubides@uib.no>`__ 
-
-People involved in making this library better, although not directly involved are:
-
--  `Håkon Robbestad Gylterud <https://hakon.gylterud.net>`__
--  `Marc
-   Bezem <https://cas.oslo.no/fellows/marc-bezem-article2086-828.html>`__
--  People from the `Agda mailing
-   list <https://lists.chalmers.se/mailman/listinfo/agda>`__
 
 References
 ----------
