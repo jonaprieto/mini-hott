@@ -53,8 +53,11 @@ symbol of the negation.
 
 ::
 
-   ¬ : ∀ {ℓ : Level} → Type ℓ → Type ℓ
-   ¬ {ℓ} A = (A → ⊥ ℓ)
+
+   infixr 50 ¬_
+   ¬_ : ∀ {ℓ : Level} → Type ℓ → Type ℓ
+   ¬_ {ℓ} A = A → ⊥ ℓ
+
 
 
 Unit type
@@ -481,7 +484,7 @@ finite types are sets, and any finite type is equivalent to some
 
 ::
 
-  
+
 
 \*\* The function bound-of \*\*
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

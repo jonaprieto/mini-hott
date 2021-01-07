@@ -953,7 +953,7 @@ Being contractible give you a section.
      fiber-prop-∑-is-base
         : ∀ {ℓ₁ ℓ₂ : Level}
         → {A : Type ℓ₁} {B : A → Type ℓ₂}
-        → (∏[ a ∶ A ] (B a))
+        → (f : ∏[ a ∶ A ] (B a))
         → (∏[ a ∶ A ] isProp (B a))
         → ∑ A B ≃ A
      fiber-prop-∑-is-base f fibers-prop

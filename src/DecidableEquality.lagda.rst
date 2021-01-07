@@ -22,7 +22,7 @@ Middle that holds even if we do not assume Excluded Middle.
      decEq
        : ∀ {ℓ : Level} → (A : Type ℓ) → Type ℓ
 
-     decEq A = (a b : A) → (a == b) + ¬ (a == b)
+     decEq A = (a b : A) → (a ≡ b) + (a ≠ b)
 
 and a more convenient name for this:
 
