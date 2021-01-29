@@ -207,32 +207,6 @@ Natural numbers
 
    Nat = ℕ
 
-\*\* An order relation \*\*
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-::
-
-   module ℕ-ordering (ℓ : Level) where
-     _<_ : ℕ → ℕ → Type ℓ
-     zero   < zero   = ⊥ _
-     zero   < succ b = ⊤ _
-     succ _ < zero   = ⊥ _
-     succ a < succ b = a < b
-
-     infixl -1 _<_
-
-     bound : ∀ {k n : ℕ} → k < n → ℕ
-     bound {n = n} _ = n
-::
-
-     _>_ : ℕ → ℕ → Type ℓ
-     a > b = b < a
-
-.. raw:: html
-
-   <!-- tabs:end -->
-
-.. _types-1:
 
 ∑-types
 -------
@@ -590,7 +564,7 @@ the reflexivity path (also called :math:`\mathsf{idp}` or
 
    infix 30 _==_ _⇝_ _≡_
 
-   _≠_ : ∀ {ℓ : Level}{A : Type ℓ}(x y : A) → Type ℓ
+   _≠_ : ∀ {ℓ}{A : Type ℓ}(x y : A) → Type ℓ
    x ≠ y = ¬ (x == y)
 
 .. raw:: html
@@ -724,6 +698,33 @@ Decidable type
      → Type (ℓ₁ ⊔ ℓ₂ ⊔ ℓ)
 
    Decidable _∼_ = ∀ x y → Dec (x ∼ y)
+
+\*\* An order relation \*\*
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+   module ℕ-ordering (ℓ : Level) where
+     _<_ : ℕ → ℕ → Type ℓ
+     zero   < zero   = ⊥ _
+     zero   < succ b = ⊤ _
+     succ _ < zero   = ⊥ _
+     succ a < succ b = a < b
+
+     infixl -1 _<_
+
+     bound : ∀ {k n : ℕ} → k < n → ℕ
+     bound {n = n} _ = n
+::
+
+     _>_ : ℕ → ℕ → Type ℓ
+     a > b = b < a
+
+     _≤_ : ℕ → ℕ → Type ℓ
+     a ≤ b = (a < b) + (a ≡ b)
+
+     _≥_ : ℕ → ℕ → Type ℓ
+     a ≥ b = (a > b) + (a ≡ b)
 
 Heterogeneous equality
 ----------------------
